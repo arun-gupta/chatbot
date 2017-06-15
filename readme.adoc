@@ -1,0 +1,10 @@
+= Build, Debug and Deploy your first Chatbot
+
+. Deploy first Alexa Skill
+. Trigger Serverless from Alexa
+. Trigger Serverless from Slack
+. Trigger Serverless from SMS
+. Load Star Wars knowledge (choose database type)
+. Serverless debugging and monitoring using X-Ray
+. CI/CD pipeline using CodePipeline
+. Full Demo
