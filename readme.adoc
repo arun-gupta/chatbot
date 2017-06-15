@@ -9,3 +9,9 @@
 . Serverless debugging and monitoring using X-Ray
 . CI/CD pipeline using CodePipeline
 . Full Demo
+
+== Wishlist
+
+. Jabber
+. Facebook Messenger
+
