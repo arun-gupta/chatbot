@@ -2,6 +2,7 @@
 
 . Deploy first Alexa Skill
 . Trigger Serverless from Alexa
+. Trigger Serverless from Lex
 . Trigger Serverless from Slack
 . Trigger Serverless from SMS
 . Load Star Wars knowledge (choose database type)
