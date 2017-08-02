@@ -1,14 +1,22 @@
-= Build, Debug and Deploy your first Chatbot
+= Build, Debug and Deploy your first Chatbot using Java
 
-. Deploy first Alexa Skill
-. Trigger Serverless from Alexa
-. Trigger Serverless from Lex
-. Trigger Serverless from Slack
-. Trigger Serverless from SMS
-. Load Star Wars knowledge (choose database type)
-. Serverless debugging and monitoring using X-Ray
-. CI/CD pipeline using CodePipeline
-. Full Demo
+== Deploy first Alexa Skill using Java
+
+== Chatbot and Alexa integration
+
+== Load Star Wars knowledge (choose database type)
+
+== Chatbot and Lex integration
+
+== Chatbot and Slack integration
+
+== Chat and SMS integration
+
+== Serverless debugging and monitoring using X-Ray
+
+== CI/CD pipeline for Chatbot using CodePipeline
+
+== Full Demo
 
 == Wishlist
 
