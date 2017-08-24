@@ -1,0 +1,5 @@
+MovieIntent what is star wars
+
+PlanetIntent what planet is {character} from
+PlanetIntent where is {character} from
+PlanetIntent where planet was {character} born on

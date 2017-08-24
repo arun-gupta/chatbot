@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "intent": "MovieIntent"
+    },
+    {
+      "intent": "PlanetIntent",
+      "slots": [
+          {
+            "name": "character",
+            "type": "STAR_WARS_CHARACTERS"
+          }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
