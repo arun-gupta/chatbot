@@ -20,8 +20,8 @@ import com.amazon.speech.ui.SimpleCard;
 /**
  * @author Arun Gupta
  */
-public class ChatbotSpeechlet implements Speechlet {
-    private static final Logger log = LoggerFactory.getLogger(ChatbotSpeechlet.class);
+public class StarwarsSpeechlet implements Speechlet {
+    private static final Logger log = LoggerFactory.getLogger(StarwarsSpeechlet.class);
 
     @Override
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
@@ -49,12 +49,11 @@ public class ChatbotSpeechlet implements Speechlet {
         String intentName = (intent != null) ? intent.getName() : null;
 
         if ("MovieIntent".equals(intentName)) {
-            String intro = "Star Wars is cool";
-            return getIntroResponse(intro);
+            return getIntroResponse("Star Wars is cool");
         } else if ("PlanetIntent".equals(intentName)) {
-            Slot slot = intent.getSlot("character");
-//            String slotValue = (slot != null) ? slot.getValue() : "Yoda";
-            return getPlanetResponse(slot.getValue());
+            return getPlanetResponse(intent.getSlot("character").getValue());
+        } else if ("LightsaberIntent".equals(intentName)) {
+            return getLightsaberResponse(intent.getSlot("character").getValue());
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
         } else {
@@ -115,14 +114,35 @@ public class ChatbotSpeechlet implements Speechlet {
     private SpeechletResponse getPlanetResponse(String slotValue) {
         StarWarsCharacter character = DBUtil.getCharacter(slotValue);
 
-        String speechText = "";
+        String speechText;
         
         if (character != null && character.getName()!= null) {
             speechText = character.getName() + " is from " + character.getPlanet();
-        } else if (character != null) {
-            speechText = "Are you sure " + character.getName() + " was in Star Wars?";
         } else {
-            speechText = "Null character";
+            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+        }
+
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle("Star Wars");
+        card.setContent(speechText);
+
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        return SpeechletResponse.newTellResponse(speech, card);
+    }
+
+    private SpeechletResponse getLightsaberResponse(String slotValue) {
+        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+
+        String speechText;
+
+        if (character != null && character.getName()!= null) {
+            speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
+        } else {
+            speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
 
         // Create the Simple card content.

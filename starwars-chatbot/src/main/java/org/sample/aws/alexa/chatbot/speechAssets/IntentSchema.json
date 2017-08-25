@@ -6,10 +6,19 @@
     {
       "intent": "PlanetIntent",
       "slots": [
-          {
-            "name": "character",
-            "type": "STAR_WARS_CHARACTERS"
-          }
+        {
+          "name": "character",
+          "type": "STAR_WARS_CHARACTERS"
+        }
+      ]
+    },
+    {
+      "intent": "LightsaberIntent",
+      "slots": [
+        {
+          "name": "character",
+          "type": "STAR_WARS_CHARACTERS"
+        }
       ]
     },
     {

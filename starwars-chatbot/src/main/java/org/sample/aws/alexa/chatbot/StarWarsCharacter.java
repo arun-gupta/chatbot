@@ -13,6 +13,7 @@ public class StarWarsCharacter {
     private int id;
     private String name;
     private String planet;
+    private String lightsaberColor;
 
     public StarWarsCharacter() {
     }
@@ -48,5 +49,14 @@ public class StarWarsCharacter {
 
     public void setPlanet(String planet) {
         this.planet = planet;
+    }
+
+    @DynamoDBAttribute(attributeName = "lightsaber")
+    public String getLightsaberColor() {
+        return lightsaberColor;
+    }
+
+    public void setLightsaberColor(String lightsaberColor) {
+        this.lightsaberColor = lightsaberColor;
     }
 }

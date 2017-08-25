@@ -10,13 +10,13 @@ import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
  *
  * @author Arun Gupta
  */
-public class ChatbotSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {
-    private static final Set<String> SUPPORTED_APPLICATION_IDS = new HashSet<String>();
+public class StarwarsSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {
+    private static final Set<String> SUPPORTED_APPLICATION_IDS = new HashSet<>();
     static {
         SUPPORTED_APPLICATION_IDS.add("amzn1.ask.skill.eaed0f8b-5003-4e3e-87b2-bf1fe927ae99");
     }
 
-    public ChatbotSpeechletRequestStreamHandler() {
-        super(new ChatbotSpeechlet(), SUPPORTED_APPLICATION_IDS);
+    public StarwarsSpeechletRequestStreamHandler() {
+        super(new StarwarsSpeechlet(), SUPPORTED_APPLICATION_IDS);
     }    
 }

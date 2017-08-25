@@ -68,7 +68,7 @@
                         {
                         "functionName": "StarWarsChatbot",
                         "description": "Star Wars Chatbot",
-                        "handler": "org.sample.aws.alexa.chatbot.ChatbotSpeechletRequestStreamHandler",
+                        "handler": "org.sample.aws.alexa.chatbot.StarwarsSpeechletRequestStreamHandler",
                         "triggers": [
                         {
                         "integration": "Alexa Skills Kit"
