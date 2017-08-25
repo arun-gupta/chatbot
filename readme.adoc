@@ -10,11 +10,14 @@ mvn -f starwars-chatbot/pom.xml clean package install
 
 Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
 
-== Load Star Wars knowledge (choose database type)
+== Load Star Wars knowledge
 
-DynamoDB
+. DynamoDB
+. Create Global Secondary Index on `whoami`
 
 == Chatbot and Alexa integration
+
+. Test using http://echosim.io
 
 == Chatbot and Lex integration
 
@@ -24,12 +27,12 @@ DynamoDB
 
 == Serverless debugging and monitoring using X-Ray
 
-== CI/CD pipeline for Chatbot using CodePipeline
-
 == Full Demo
 
 == Wishlist
 
-. Jabber
-. Facebook Messenger
+. https://github.com/arun-gupta/chatbot/issues/2[CI/CD pipeline for Chatbot using CodePipeline]
+. https://github.com/arun-gupta/chatbot/issues/3[Facebook Messenger]
+. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
+
 
