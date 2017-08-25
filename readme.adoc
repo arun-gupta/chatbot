@@ -25,6 +25,8 @@ Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region 
 
 == Chat and SMS integration
 
+. http://docs.aws.amazon.com/mobile/sdkforxamarin/developerguide/sns-send-sms.html[Send and Receive SMS] - TODO
+
 == Serverless debugging and monitoring using X-Ray
 
 == Full Demo
