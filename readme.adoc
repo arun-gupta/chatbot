@@ -2,9 +2,19 @@
 
 == Deploy first Alexa Skill using Java
 
-== Chatbot and Alexa integration
+https://github.com/arun-gupta/alexa-skill-java
+
+```
+mvn -f starwars-chatbot/pom.xml clean package install
+```
+
+Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
 
 == Load Star Wars knowledge (choose database type)
+
+DynamoDB
+
+== Chatbot and Alexa integration
 
 == Chatbot and Lex integration
 
