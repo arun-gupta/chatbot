@@ -4,8 +4,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import java.util.HashMap;
 import java.util.List;
@@ -38,18 +37,13 @@ public class DBUtil {
     }
 
     public static StarWarsCharacter getCharacter(String name) {
-        DynamoDB dynamoDB = new DynamoDB(getClient());
-//        Table table = dynamoDB.getTable("starwars");
-//        Index index = table.getIndex("name-index");
-        
-        Map<String, AttributeValue> eav = new HashMap<>();
-        eav.put(":v_name", new AttributeValue().withS(name));
-        
-        DynamoDBQueryExpression<StarWarsCharacter> query = new DynamoDBQueryExpression<StarWarsCharacter>()
-                .withKeyConditionExpression("name = :v_name")
-                .withExpressionAttributeValues(eav);
         DynamoDBMapper mapper = new DynamoDBMapper(getClient());
-        List<StarWarsCharacter> list = mapper.query(StarWarsCharacter.class, query);
+        Map<String, AttributeValue> eav = new HashMap<>();
+        eav.put(":name", new AttributeValue().withS(name));
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                .withFilterExpression("whoami = :name")
+                .withExpressionAttributeValues(eav);
+        List<StarWarsCharacter> list = mapper.scan(StarWarsCharacter.class, scanExpression);
         
         if (!list.isEmpty()) {
             return list.get(0);
