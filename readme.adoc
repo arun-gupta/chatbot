@@ -31,6 +31,12 @@ Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region 
 
 == Full Demo
 
+== Test
+
+. Ask Star Wars what planet is {character} lightsaber
+. Ask Star Wars what color is {character} ligthsaber
+. Ask Star Wars Tell me a {character} quote
+
 == Wishlist
 
 . https://github.com/arun-gupta/chatbot/issues/2[CI/CD pipeline for Chatbot using CodePipeline]
