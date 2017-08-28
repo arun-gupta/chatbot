@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.amazon.speech.slu.Intent;
-import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.LaunchRequest;
 import com.amazon.speech.speechlet.Session;
@@ -43,6 +42,14 @@ public class StarwarsSpeechlet implements Speechlet {
     }
 
     @Override
+    public void onSessionEnded(final SessionEndedRequest request, final Session session)
+            throws SpeechletException {
+        log.info("onSessionEnded requestId={}, sessionId={}", request.getRequestId(),
+                session.getSessionId());
+        // any cleanup logic goes here
+    }
+
+    @Override
     public SpeechletResponse onIntent(final IntentRequest request, final Session session)
             throws SpeechletException {
         log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
@@ -66,36 +73,13 @@ public class StarwarsSpeechlet implements Speechlet {
         }
     }
 
-    @Override
-    public void onSessionEnded(final SessionEndedRequest request, final Session session)
-            throws SpeechletException {
-        log.info("onSessionEnded requestId={}, sessionId={}", request.getRequestId(),
-                session.getSessionId());
-        // any cleanup logic goes here
-    }
-
     /**
      * Creates and returns a {@code SpeechletResponse} with a welcome message.
      *
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getWelcomeResponse() {
-        String speechText = "Welcome to Star Wars Trivia, you can ask about planets";
-
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Star Wars");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        // Create reprompt
-        Reprompt reprompt = new Reprompt();
-        reprompt.setOutputSpeech(speech);
-
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return getSpeechletResponseWithReprompt("Welcome to Star Wars Trivia, you can ask about planets", "Star Wars Welcome");
     }
 
     /**
@@ -104,18 +88,18 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getIntroResponse(String intro) {
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Star Wars Intro");
-        card.setContent(intro);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(intro);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return getSpeechletResponse("", "Star Wars Intro");
     }
-    
+
+    /**
+     * Creates a {@code SpeechletResponse} for the help intent.
+     *
+     * @return SpeechletResponse spoken and visual response for the given intent
+     */
+    private SpeechletResponse getHelpResponse() {
+        return getSpeechletResponseWithReprompt("Star Wars", "Star Wars Help");
+    }
+
     private SpeechletResponse getPlanetResponse(String slotValue) {
         StarWarsCharacter character = DBUtil.getCharacter(slotValue);
 
@@ -127,16 +111,7 @@ public class StarwarsSpeechlet implements Speechlet {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
 
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Star Wars");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return getSpeechletResponse(speechText, "Star Wars Planet");
     }
 
     private SpeechletResponse getLightsaberResponse(String slotValue) {
@@ -149,17 +124,7 @@ public class StarwarsSpeechlet implements Speechlet {
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
-
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Star Wars");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return getSpeechletResponse(speechText, "Star Wars Lightsaber");
     }
 
     private SpeechletResponse getQuotesResponse(String slotValue) {
@@ -176,38 +141,37 @@ public class StarwarsSpeechlet implements Speechlet {
         }
 
         // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Star Wars");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return getSpeechletResponse(speechText, "Star Wars Quotes");
     }
 
-    /**
-     * Creates a {@code SpeechletResponse} for the help intent.
-     *
-     * @return SpeechletResponse spoken and visual response for the given intent
-     */
-    private SpeechletResponse getHelpResponse() {
-        String speechText = "You can say hello to me!";
-
+    private SimpleCard getCard(String title, String speechText) {
         // Create the Simple card content.
         SimpleCard card = new SimpleCard();
-        card.setTitle("HelloWorld");
+        card.setTitle(title);
         card.setContent(speechText);
+        return card;
+    }
 
+    private PlainTextOutputSpeech getSpeech(String speechText) {
         // Create the plain text output.
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
+
+        return speech;
+    }
+
+    private SpeechletResponse getSpeechletResponse(String speechText, String title) {
+        return SpeechletResponse.newTellResponse(getSpeech(speechText), getCard(speechText, title));
+    }
+
+    private SpeechletResponse getSpeechletResponseWithReprompt(String speechText, String title) {
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = getSpeech(speechText);
 
         // Create reprompt
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletResponse.newAskResponse(speech, reprompt, getCard(speechText, title));
     }
 }
