@@ -22,6 +22,15 @@
       ]
     },
     {
+      "intent": "QuotesIntent",
+      "slots": [
+        {
+          "name": "character",
+          "type": "STAR_WARS_CHARACTERS"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     }
   ]

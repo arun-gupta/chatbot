@@ -4,6 +4,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+import java.util.List;
+
 /**
  * @author Arun Gupta
  */
@@ -14,6 +16,11 @@ public class StarWarsCharacter {
     private String name;
     private String planet;
     private String lightsaberColor;
+    private String ship;
+    private String weapon;
+    private boolean dead;
+    private boolean forceSensitive;
+    private List<String> quotes;
 
     public StarWarsCharacter() {
     }
@@ -58,5 +65,46 @@ public class StarWarsCharacter {
 
     public void setLightsaberColor(String lightsaberColor) {
         this.lightsaberColor = lightsaberColor;
+    }
+
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(String weapon) {
+        this.weapon = weapon;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    @DynamoDBAttribute(attributeName = "force-sensitive")
+    public boolean isForceSensitive() {
+        return forceSensitive;
+    }
+
+    public void setForceSensitive(boolean forceSensitive) {
+        this.forceSensitive = forceSensitive;
+    }
+
+    public List<String> getQuotes() {
+        return quotes;
+    }
+
+    public void setQuotes(List<String> quotes) {
+        this.quotes = quotes;
     }
 }

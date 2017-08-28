@@ -17,6 +17,9 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 
+import java.util.List;
+import java.util.Random;
+
 /**
  * @author Arun Gupta
  */
@@ -54,6 +57,8 @@ public class StarwarsSpeechlet implements Speechlet {
             return getPlanetResponse(intent.getSlot("character").getValue());
         } else if ("LightsaberIntent".equals(intentName)) {
             return getLightsaberResponse(intent.getSlot("character").getValue());
+        } else if ("QuotesIntent".equals(intentName)) {
+            return getQuotesResponse(intent.getSlot("character").getValue());
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
         } else {
@@ -141,6 +146,31 @@ public class StarwarsSpeechlet implements Speechlet {
 
         if (character != null && character.getName()!= null) {
             speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
+        } else {
+            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+        }
+
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle("Star Wars");
+        card.setContent(speechText);
+
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        return SpeechletResponse.newTellResponse(speech, card);
+    }
+
+    private SpeechletResponse getQuotesResponse(String slotValue) {
+        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+
+        String speechText;
+
+        if (character != null && character.getName()!= null) {
+            List<String> list = character.getQuotes();
+            Random random = new Random();
+            speechText = "Here is a quote from " + character.getName() + ": " + list.get(random.nextInt(list.size()));
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
