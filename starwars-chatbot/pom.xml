@@ -27,6 +27,17 @@
             <version>1.11.127</version>
         </dependency>
 
+        <!-- Lex Box -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-lambda</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -65,16 +76,21 @@
                     <timeout>30</timeout>
                     <lambdaFunctionsJSON>
                         [
-                        {
-                        "functionName": "StarWarsChatbot",
-                        "description": "Star Wars Chatbot",
-                        "handler": "org.sample.aws.alexa.chatbot.StarwarsSpeechletRequestStreamHandler",
-                        "triggers": [
-                        {
-                        "integration": "Alexa Skills Kit"
-                        }
-                        ]
-                        }
+                            {
+                                "functionName":"StarWarsChatbot",
+                                "description":"Star Wars Chatbot",
+                                "handler":"org.sample.aws.alexa.chatbot.StarwarsSpeechletRequestStreamHandler",
+                                "triggers":[
+                                    {
+                                        "integration":"Alexa Skills Kit"
+                                    }
+                                ]
+                            },
+                            {
+                                "functionName":"StarWarsLexbot",
+                                "description":"Star Wars Lexbot",
+                                "handler":"org.sample.aws.alexa.chatbot.lex.StarWarsLexBot"
+                            }
                         ]
                     </lambdaFunctionsJSON>
                 </configuration>
