@@ -10,7 +10,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
     @Override
     public LexResponse handleRequest(LexRequest request, Context context) {
         System.out.println("Intent: " + request.currentIntent);
-        Message message = new Message("Plaintext", "Some response message");
+        Message message = new Message("PlainText", "Some response message");
         DialogAction dialogAction = new DialogAction("Close", "Fulfilled", message);
         return new LexResponse(dialogAction);
     }
