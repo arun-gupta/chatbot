@@ -79,7 +79,8 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getWelcomeResponse() {
-        return getSpeechletResponseWithReprompt("Welcome to Star Wars Trivia, you can ask about planets", "Star Wars Welcome");
+        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+        return getSpeechletResponseWithReprompt(response.speechText, response.title);
     }
 
     /**
@@ -88,7 +89,8 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getIntroResponse(String intro) {
-        return getSpeechletResponse("", "Star Wars Intro");
+        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     /**
@@ -97,51 +99,23 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getHelpResponse() {
-        return getSpeechletResponseWithReprompt("Star Wars", "Star Wars Help");
+        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getPlanetResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
-
-        String speechText;
-        
-        if (character != null && character.getName()!= null) {
-            speechText = character.getName() + " is from " + character.getPlanet();
-        } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
-        }
-
-        return getSpeechletResponse(speechText, "Star Wars Planet");
+        StarWarsResponse response = StarWarsResponse.getPlanetResponse(slotValue);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getLightsaberResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
-
-        String speechText;
-
-        if (character != null && character.getName()!= null) {
-            speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
-        } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
-        }
-        return getSpeechletResponse(speechText, "Star Wars Lightsaber");
+        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(slotValue);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getQuotesResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
-
-        String speechText;
-
-        if (character != null && character.getName()!= null) {
-            List<String> list = character.getQuotes();
-            Random random = new Random();
-            speechText = "Here is a quote from " + character.getName() + ": " + list.get(random.nextInt(list.size()));
-        } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
-        }
-
-        // Create the Simple card content.
-        return getSpeechletResponse(speechText, "Star Wars Quotes");
+        StarWarsResponse response = StarWarsResponse.getQuotesResponse(slotValue);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SimpleCard getCard(String title, String speechText) {
