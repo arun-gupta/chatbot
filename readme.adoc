@@ -11,6 +11,7 @@ The users can interact with this chatbot using the following means:
 . Alexa
 . SMS
 . Facebook Messenger
+. Slack
 
 Here are the key components of architecture:
 
@@ -100,10 +101,6 @@ image::images/slack.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
-=== Email
-
-. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
-
 == Serverless debugging and monitoring using X-Ray
 
 == Utterances
@@ -117,4 +114,5 @@ Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is:
 == Wishlist
 
 . https://github.com/arun-gupta/chatbot/issues/2[CI/CD pipeline for Chatbot using CodePipeline]
+. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
 
