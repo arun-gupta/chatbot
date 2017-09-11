@@ -105,8 +105,6 @@ Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
 == Serverless debugging and monitoring using X-Ray
 
-== Full Demo
-
 == Utterances
 
 Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is:
