@@ -1,5 +1,7 @@
 = Build, Debug and Deploy your first Chatbot using Java
 
+image::images/chatbot-logo.png[]
+
 This repository explains how to create a Star Wars chatbot. The users can interact with this chatbot using different platforms:
 
 . Alexa
@@ -7,6 +9,10 @@ This repository explains how to create a Star Wars chatbot. The users can intera
 . Facebook Messenger
 . Slack
 . Email
+
+Here is the architecture:
+
+image::images/chatbot-arch.png[]
 
 == Deploy Alexa Skill and Lex bot using Java
 
@@ -27,6 +33,8 @@ Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region 
 
 === Alexa
 
+Alexa Skill Kit -> Lambda -> DynamoDB
+
 . Test using http://echosim.io
 
 === Lex
@@ -39,7 +47,11 @@ image::images/lexbot.png[]
 
 Twilio -> Lex -> Lambda -> DynamoDB
 
-https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
+*How?*
+
+. Send a message to 408-913-9827
+
+Details: https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
 
 image::images/sms.png[]
 
@@ -47,7 +59,12 @@ image::images/sms.png[]
 
 Facebook -> Lex -> Lambda -> DynamoDB
 
-http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
+*How?*
+
+. Like https://www.facebook.com/Star-Wars-Chatbot-124902658243108/
+. From messenger.com, send a message to this page
+
+Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
 
 image::images/facebook.png[]
 
