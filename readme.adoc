@@ -1,16 +1,16 @@
 = Build, Debug and Deploy your first Chatbot using Java
 
-image::images/chatbot-logo.png[]
+This repository explains how to create a Star Wars chatbot using Amazon Alexa and Java.
 
-This repository explains how to create a Star Wars chatbot. The users can interact with this chatbot using different platforms:
+image::images/chatbot-logo.png[width="50%"]
+
+The users can interact with this chatbot using the following means:
 
 . Alexa
 . SMS
 . Facebook Messenger
-. Slack
-. Email
 
-Here is the architecture:
+Here are the key components of architecture:
 
 image::images/chatbot-arch.png[]
 
@@ -26,47 +26,68 @@ Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region 
 
 == Load Star Wars knowledge
 
-. DynamoDB
-. Create Global Secondary Index on `whoami`
+Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
+
+[source, json]
+----
+{
+  "dead": true,
+  "force-sensitive": true,
+  "forceside": "light",
+  "id": 1,
+  "lightsaber": "green",
+  "planet": "Dagobah",
+  "quotes": [
+    "When nine hundred years old you reach, look as good you will not.",
+    "Truly wonderful, the mind of a child is",
+    "A Jedi uses the Force for knowledge and defense, never for attack",
+    "That is why you fail.",
+    "Adventure. Excitement. A Jedi craves not these things.",
+    "Judge me by my size, do you?",
+    "Fear is the path to the dark side",
+    "Wars not make one great",
+    "Do, or do not. There is no try",
+    "Size matters not",
+    "The dark side clouds everything",
+    "Impossible to see the future is",
+    "Clear your mind must be",
+    "Much to learn you still have ... my old padawan"
+  ],
+  "weapon": "lightsaber",
+  "whoami": "Yoda"
+}
+----
+
+Create Global Secondary Index on `whoami`
 
 == Integration with different platforms
 
 === Alexa
 
-Alexa Skill Kit -> Lambda -> DynamoDB
-
-. Test using http://echosim.io
+. Test using http://echosim.io or Alexa
 
 === Lex
 
 http://docs.aws.amazon.com/lex/latest/dg/using-lambda.html
 
-image::images/lexbot.png[]
+image::images/lexbot.png[width="50%"]
 
 === SMS
 
-Twilio -> Lex -> Lambda -> DynamoDB
-
-*How?*
-
 . Send a message to 408-913-9827
+
+image::images/sms.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
 
-image::images/sms.png[]
-
 === Facebook
-
-Facebook -> Lex -> Lambda -> DynamoDB
-
-*How?*
 
 . Like https://www.facebook.com/Star-Wars-Chatbot-124902658243108/
 . From messenger.com, send a message to this page
 
-Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
+image::images/facebook.png[width="50%"]
 
-image::images/facebook.png[]
+Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
 
 === Slack
 
