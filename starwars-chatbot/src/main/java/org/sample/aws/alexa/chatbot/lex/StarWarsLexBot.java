@@ -12,7 +12,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
     @Override
     public LexResponse handleRequest(LexRequest request, Context context) {
-        log.info("onIntent requestId={}", context.getAwsRequestId());
+        log.info("onIntent requestId={} intent={}", context.getAwsRequestId(), request.getCurrentIntent().getName());
 
         if ("MovieIntent".equals(request.getCurrentIntent().getName())) {
             return getIntroResponse("Star Wars is cool");
