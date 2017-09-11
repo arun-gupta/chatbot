@@ -1,3 +1,5 @@
+:toc:
+
 = Build, Debug and Deploy your first Chatbot using Java
 
 This repository explains how to create a Star Wars chatbot using Amazon Alexa and Java.
@@ -91,7 +93,11 @@ Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
 
 === Slack
 
-https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html (TODO)
+Get yourself invited:  https://join.slack.com/t/starwarschatbot/shared_invite/MjM4OTU2MTEwMTE0LTE1MDUwOTgzMzItYzZmMjFhYTNiNA
+
+image::images/slack.png[width="50%"]
+
+Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
 === Email
 
