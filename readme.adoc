@@ -85,7 +85,7 @@ Details: https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
 === Facebook
 
 . Like https://www.facebook.com/Star-Wars-Chatbot-124902658243108/
-. From messenger.com, send a message to this page
+. From http://messenger.com, send a message to this page as shown below:
 
 image::images/facebook.png[width="50%"]
 
