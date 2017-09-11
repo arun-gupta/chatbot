@@ -57,22 +57,21 @@ https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html (TODO)
 
 === Email
 
-TBD
+. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
 
 == Serverless debugging and monitoring using X-Ray
 
 == Full Demo
 
-== Test
+== Utterances
 
-. Ask Star Wars what planet is {character} lightsaber
-. Ask Star Wars what color is {character} ligthsaber
-. Ask Star Wars Tell me a {character} quote
+Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is:
+
+. what planet is {character} lightsaber
+. what color is {character} ligthsaber
+. Tell me a {character} quote
 
 == Wishlist
 
 . https://github.com/arun-gupta/chatbot/issues/2[CI/CD pipeline for Chatbot using CodePipeline]
-. https://github.com/arun-gupta/chatbot/issues/3[Facebook Messenger]
-. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
-
 
