@@ -15,21 +15,23 @@ Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region 
 . DynamoDB
 . Create Global Secondary Index on `whoami`
 
-== Chatbot and Alexa integration
+== Integration with different platforms
+
+=== Alexa
 
 . Test using http://echosim.io
 
-== SMS integration
+=== SMS
 
 Twilio -> Lex -> Lambda -> DynamoDB
 
 https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
 
-== Facebook integration
+=== Facebook
 
 http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html (TODO)
 
-== Chatbot and Slack integration
+=== Slack
 
 https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html (TODO)
 
