@@ -101,7 +101,7 @@ image::images/slack.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
-== Serverless debugging and monitoring using X-Ray
+== Debugging and monitoring using X-Ray
 
 == Utterances
 
