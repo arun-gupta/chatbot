@@ -1,6 +1,14 @@
 = Build, Debug and Deploy your first Chatbot using Java
 
-== Deploy first Alexa Skill using Java
+This repository explains how to create a Star Wars chatbot. The users can interact with this chatbot using different platforms:
+
+. Alexa
+. SMS
+. Facebook Messenger
+. Slack
+. Email
+
+== Deploy Alexa Skill and Lex bot using Java
 
 https://github.com/arun-gupta/alexa-skill-java
 
@@ -34,6 +42,10 @@ http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html (TODO)
 === Slack
 
 https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html (TODO)
+
+=== Email
+
+TBD
 
 == Serverless debugging and monitoring using X-Ray
 
