@@ -76,7 +76,7 @@ image::images/lexbot.png[width="50%"]
 
 === SMS
 
-. Send a message to 408-913-9827
+. Send a message to 408-913-9827 as shown below:
 
 image::images/sms.png[width="50%"]
 
@@ -93,7 +93,8 @@ Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
 
 === Slack
 
-Get yourself invited:  https://join.slack.com/t/starwarschatbot/shared_invite/MjM4OTU2MTEwMTE0LTE1MDUwOTgzMzItYzZmMjFhYTNiNA
+. Get yourself invited:  https://join.slack.com/t/starwarschatbot/shared_invite/MjM4OTU2MTEwMTE0LTE1MDUwOTgzMzItYzZmMjFhYTNiNA
+. DM with the app `star_wars_chatbot` and ask questions as shown below:
 
 image::images/slack.png[width="50%"]
 
