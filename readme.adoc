@@ -1,10 +1,10 @@
 :toc:
 
-= Build, Deploy and Monitor your first Chatbot using Java
+= Build Your Own Chatbot using Java
 
 This repository explains how to create a Star Wars chatbot using Amazon Lex and Java.
 
-image::images/chatbot-logo.png[width="50%"]
+image::images/logo.png[width="50%"]
 
 The users can interact with this chatbot using the following means:
 
@@ -13,9 +13,9 @@ The users can interact with this chatbot using the following means:
 
 Here are the key components of architecture:
 
-image::images/chatbot-arch.png[]
+image::images/architecture.png[]
 
-== Deploy Alexa Skill and Lex bot using Java
+== Deploy Lex bot and Alexa backend function using Java
 
 https://github.com/arun-gupta/alexa-skill-java
 
@@ -23,7 +23,7 @@ https://github.com/arun-gupta/alexa-skill-java
 mvn -f starwars-chatbot/pom.xml clean package install
 ```
 
-Function ARN: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
+ARN for Alexa function: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
 
 == Load Star Wars knowledge
 
@@ -61,11 +61,7 @@ Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
 
 Create Global Secondary Index on `whoami`
 
-== Integration with different platforms
-
-=== Alexa
-
-. Test using http://echosim.io or Alexa
+== Different platforms
 
 === Lex
 
@@ -99,13 +95,29 @@ image::images/slack.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
-== Debugging and monitoring using X-Ray
+=== Web
+
+TODO
+
+=== Mobile
+
+TODO
+
+=== Alexa
+
+. Test using http://echosim.io or Alexa
+
+== Logging using Amazon CloudWatch
+
+== Monitoring using AWS X-Ray
+
+== CI/CD using AWS CodePipeline
 
 == Utterances
 
 Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is:
 
-. what planet is {character} lightsaber
+. what planet is {character} from
 . what color is {character} ligthsaber
 . Tell me a {character} quote
 
