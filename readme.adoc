@@ -1,17 +1,15 @@
 :toc:
 
-= Build, Debug and Deploy your first Chatbot using Java
+= Build, Deploy and Monitor your first Chatbot using Java
 
-This repository explains how to create a Star Wars chatbot using Amazon Alexa and Java.
+This repository explains how to create a Star Wars chatbot using Amazon Lex and Java.
 
 image::images/chatbot-logo.png[width="50%"]
 
 The users can interact with this chatbot using the following means:
 
-. Alexa
-. SMS
-. Facebook Messenger
-. Slack
+. Voice (Alexa, Phone/Call)
+. Text (Phone/SMS, Facebook Messenger, Slack)
 
 Here are the key components of architecture:
 
