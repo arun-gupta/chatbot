@@ -38,6 +38,13 @@
             <artifactId>aws-java-sdk-lambda</artifactId>
             <version>LATEST</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.sample.aws.lex</groupId>
+            <artifactId>lex-java</artifactId>
+            <version>0.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

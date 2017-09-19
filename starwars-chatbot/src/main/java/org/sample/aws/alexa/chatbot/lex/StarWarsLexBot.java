@@ -3,6 +3,10 @@ package org.sample.aws.alexa.chatbot.lex;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.sample.aws.alexa.chatbot.StarWarsResponse;
+import org.sample.aws.lex.request.LexRequest;
+import org.sample.aws.lex.response.DialogAction;
+import org.sample.aws.lex.response.LexResponse;
+import org.sample.aws.lex.response.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
