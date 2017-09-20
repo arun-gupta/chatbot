@@ -86,7 +86,7 @@
                             {
                                 "functionName":"StarWarsChatbot",
                                 "description":"Star Wars Chatbot",
-                                "handler":"org.sample.aws.alexa.chatbot.StarwarsSpeechletRequestStreamHandler",
+                                "handler":"org.sample.aws.chatbot.starwars.alexa.StarwarsSpeechletRequestStreamHandler",
                                 "triggers":[
                                     {
                                         "integration":"Alexa Skills Kit"
@@ -96,7 +96,7 @@
                             {
                                 "functionName":"StarWarsLexbot",
                                 "description":"Star Wars Lexbot",
-                                "handler":"org.sample.aws.alexa.chatbot.lex.StarWarsLexBot"
+                                "handler":"org.sample.aws.chatbot.starwars.lex.StarWarsLexBot"
                             }
                         ]
                     </lambdaFunctionsJSON>

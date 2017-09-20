@@ -1,4 +1,4 @@
-package org.sample.aws.alexa.chatbot;
+package org.sample.aws.chatbot.starwars.db;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
@@ -20,6 +20,7 @@ public class StarWarsCharacter {
     private String weapon;
     private boolean dead;
     private boolean forceSensitive;
+    private String forceSide;
     private List<String> quotes;
 
     public StarWarsCharacter() {
@@ -98,6 +99,15 @@ public class StarWarsCharacter {
 
     public void setForceSensitive(boolean forceSensitive) {
         this.forceSensitive = forceSensitive;
+    }
+
+    @DynamoDBAttribute
+    public String getForceSide() {
+        return forceSide;
+    }
+
+    public void setForceSide(String forceSide) {
+        this.forceSide = forceSide;
     }
 
     public List<String> getQuotes() {

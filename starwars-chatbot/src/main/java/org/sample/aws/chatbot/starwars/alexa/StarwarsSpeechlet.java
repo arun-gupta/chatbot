@@ -1,5 +1,7 @@
-package org.sample.aws.alexa.chatbot;
+package org.sample.aws.chatbot.starwars.alexa;
 
+import org.sample.aws.chatbot.starwars.common.StarWarsIntent;
+import org.sample.aws.chatbot.starwars.common.StarWarsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +17,6 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
-
-import java.util.List;
-import java.util.Random;
 
 /**
  * @author Arun Gupta
@@ -58,13 +57,13 @@ public class StarwarsSpeechlet implements Speechlet {
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
 
-        if ("MovieIntent".equals(intentName)) {
+        if (StarWarsIntent.MOVIE_INTENT.equals(intentName)) {
             return getIntroResponse("Star Wars is cool");
-        } else if ("PlanetIntent".equals(intentName)) {
+        } else if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
             return getPlanetResponse(intent.getSlot("character").getValue());
-        } else if ("LightsaberIntent".equals(intentName)) {
+        } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intentName)) {
             return getLightsaberResponse(intent.getSlot("character").getValue());
-        } else if ("QuotesIntent".equals(intentName)) {
+        } else if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
             return getQuotesResponse(intent.getSlot("character").getValue());
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
@@ -80,7 +79,7 @@ public class StarwarsSpeechlet implements Speechlet {
      */
     private SpeechletResponse getWelcomeResponse() {
         StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
-        return getSpeechletResponseWithReprompt(response.speechText, response.title);
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     /**

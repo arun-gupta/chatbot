@@ -1,9 +1,10 @@
-package org.sample.aws.alexa.chatbot;
+package org.sample.aws.chatbot.starwars.alexa;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
+import org.sample.aws.chatbot.starwars.alexa.StarwarsSpeechlet;
 
 /**
  * This class is the handler for AWS Lambda function.

@@ -1,6 +1,7 @@
-package org.sample.aws.alexa.chatbot;
+package org.sample.aws.chatbot.starwars.common;
 
-import com.amazon.speech.speechlet.SpeechletResponse;
+import org.sample.aws.chatbot.starwars.db.DBUtil;
+import org.sample.aws.chatbot.starwars.db.StarWarsCharacter;
 
 import java.util.List;
 import java.util.Random;
@@ -90,4 +91,34 @@ public class StarWarsResponse {
         return new StarWarsResponse(speechText, "Star Wars Quotes");
     }
 
+
+    public static StarWarsResponse getForceSensitiveResponse(String slotValue) {
+        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+
+        String speechText;
+
+        if (character != null && character.getName()!= null) {
+            speechText = character.getName() + " is " + (character.isForceSensitive() ? "" : " not ") + " sensitive to the Force";
+        } else {
+            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+        }
+
+        // Create the Simple card content.
+        return new StarWarsResponse(speechText, "Star Wars Force Sensitive");
+    }
+
+    public static StarWarsResponse getForceSideResponse(String slotValue) {
+        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+
+        String speechText;
+
+        if (character != null && character.getName()!= null) {
+            speechText = character.getName() + " is on the " + character.getForceSide() + " side";
+        } else {
+            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+        }
+
+        // Create the Simple card content.
+        return new StarWarsResponse(speechText, "Star Wars Force Side");
+    }
 }
