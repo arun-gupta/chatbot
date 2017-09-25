@@ -3,16 +3,20 @@ package org.sample.aws.chatbot.starwars.common;
 import org.sample.aws.chatbot.starwars.db.DBUtil;
 import org.sample.aws.chatbot.starwars.db.StarWarsCharacter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class StarWarsResponse {
     String speechText;
     String title;
+    Map<String, String> sessionAttributes;
 
     public StarWarsResponse(String speechText, String title) {
         this.speechText = speechText;
         this.title = title;
+        sessionAttributes = new HashMap<>();
     }
 
     public String getSpeechText() {
@@ -21,6 +25,10 @@ public class StarWarsResponse {
 
     public String getTitle() {
         return title;
+    }
+
+    public Map<String, String> getSessionAttributes() {
+        return sessionAttributes;
     }
 
     public static StarWarsResponse getWelcomeResponse() {
@@ -127,5 +135,30 @@ public class StarWarsResponse {
 
         // Create the Simple card content.
         return new StarWarsResponse(speechText, "Star Wars Force Side");
+    }
+
+    public static StarWarsResponse getDialogQuestion() {
+        StarWarsCharacter character = DBUtil.getRandomCharacter();
+        List<String> list = character.getQuotes();
+
+        Random random = new Random();
+        String speechText = "Who said \"" + list.get(random.nextInt(list.size())) + "\"";
+
+        StarWarsResponse response = new StarWarsResponse(speechText, "Star Wars Dialog Question");
+        response.sessionAttributes.put("character", character.getName());
+
+        return response;
+    }
+
+    public static StarWarsResponse getDialogResponse(Map<String, String> sessionAttributes) {
+        String character = sessionAttributes.get("character");
+
+//        StarWarsCharacter character = DBUtil.getRandomCharacter();
+//        List<String> list = character.getQuotes();
+//
+//        Random random = new Random();
+//        String speechText = "Who said \"" + list.get(random.nextInt(list.size())) + "\"";
+
+        return new StarWarsResponse("still checking", "Star Wars Dialog Response");
     }
 }

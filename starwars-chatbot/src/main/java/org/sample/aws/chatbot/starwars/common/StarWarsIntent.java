@@ -7,4 +7,5 @@ public final class StarWarsIntent {
     public static final String QUOTES_INTENT = "QuotesIntent";
     public static final String FORCE_SENSITIVE_INTENT = "StarWarsForceSensitive";
     public static final String FORCE_SIDE_INTENT = "StarWarsForceSide";
+    public static final String DIALOG_INTENT = "StarWarsDialog";
 }

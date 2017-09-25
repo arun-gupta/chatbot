@@ -5,11 +5,15 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ScanRequest;
+import com.amazonaws.services.dynamodbv2.model.ScanResult;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author Arun Gupta
@@ -35,6 +39,25 @@ public class DBUtil {
                 .build();
 
         return dynamodbClient;
+    }
+
+    private static int getCharactersCount() {
+        ScanRequest scanRequest = new ScanRequest()
+                .withTableName("starwars");
+        ScanResult result = getClient().scan(scanRequest);
+        System.out.println("Total number of characters found: " + result.getCount());
+
+        // scanning only returns 1MB of data
+        // need to aggressively scan and return an accurate count
+
+        return result.getCount();
+    }
+
+    public static StarWarsCharacter getRandomCharacter() {
+        DynamoDBMapper mapper = new DynamoDBMapper(getClient());
+        Random random = new Random();
+
+        return mapper.load(StarWarsCharacter.class, random.nextInt(getCharactersCount()) + 1);
     }
 
     public static StarWarsCharacter getCharacter(String name) {

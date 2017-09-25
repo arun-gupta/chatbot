@@ -8,8 +8,11 @@ import org.sample.aws.lex.request.LexRequest;
 import org.sample.aws.lex.response.DialogAction;
 import org.sample.aws.lex.response.LexResponse;
 import org.sample.aws.lex.response.Message;
+import org.sample.aws.lex.response.ResponseCard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
@@ -33,6 +36,14 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
             return getForceSensitiveResponse(character);
         } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intent)) {
             return getForceSideResponse(character);
+        } else if (StarWarsIntent.DIALOG_INTENT.equals(intent)) {
+            System.out.println("Invocation source: " + request.getInvocationSource());
+            if (request.getInvocationSource().equals(LexRequest.INVOCATION_SOURCE_DIALOG_CODE_HOOK)) {
+                return getDialogQuestion();
+            } else {
+                request.getCurrentIntent().getSlots().forEach((k, v) -> System.out.println(k + ":" + v));
+                return getDialogResponse(request.getSessionAttributes());
+            }
         } else if ("AMAZON.HelpIntent".equals(intent)) {
             return getHelpResponse();
         } else {
@@ -70,15 +81,39 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
+    private LexResponse getDialogQuestion() {
+        StarWarsResponse response = StarWarsResponse.getDialogQuestion();
+
+        DialogAction dialogAction = new DialogAction();
+        dialogAction.setIntentName(StarWarsIntent.DIALOG_INTENT);
+        dialogAction.setSlotToElicit("character");
+        dialogAction.setType(DialogAction.ELICIT_SLOT_TYPE);
+
+        Message message = new Message(Message.CONTENT_TYPE_PLAIN_TEXT, response.getSpeechText());
+        dialogAction.setMessage(message);
+
+        dialogAction.addSlots("character", "");
+
+        LexResponse lexResponse = new LexResponse(dialogAction);
+        lexResponse.setSessionAttributes(response.getSessionAttributes());
+
+        return lexResponse;
+    }
+
+    private LexResponse getDialogResponse(Map<String, String> sessionAttributes) {
+        StarWarsResponse response = StarWarsResponse.getDialogResponse(sessionAttributes);
+        return getLexResponse(response.getSpeechText(), response.getTitle());
+    }
+
     private LexResponse getHelpResponse() {
         StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
     private LexResponse getLexResponse(String speechText, String title) {
-        Message message = new Message("PlainText", speechText);
-        DialogAction dialogAction = new DialogAction("Close", "Fulfilled", message);
+        Message message = new Message(Message.CONTENT_TYPE_PLAIN_TEXT, speechText);
+        DialogAction dialogAction = new DialogAction(DialogAction.CLOSE_TYPE, DialogAction.FULFILLMENT_STATE_FULFILLED, message);
+
         return new LexResponse(dialogAction);
     }
-
 }
