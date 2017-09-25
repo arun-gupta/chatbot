@@ -17,13 +17,15 @@ image::images/architecture.png[]
 
 == Deploy Lex bot and Alexa backend function using Java
 
-https://github.com/arun-gupta/alexa-skill-java
+You need to install `org.sample.aws.lex:lex-java:0.2` dependency as explained at https://github.com/arun-gupta/lex-java#install-jar-locally before building this project.
 
 ```
 mvn -f starwars-chatbot/pom.xml clean package install
 ```
 
 ARN for Alexa function: `aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn`
+
+NOTE: Getting Started with Alexa skill using Java is explained at https://github.com/arun-gupta/alexa-skill-java.
 
 == Load Star Wars knowledge
 
@@ -69,7 +71,7 @@ http://docs.aws.amazon.com/lex/latest/dg/using-lambda.html
 
 image::images/lexbot.png[width="50%"]
 
-=== SMS
+=== Twilio/SMS
 
 . Send a message to 408-913-9827 as shown below:
 
@@ -110,8 +112,6 @@ TODO
 == Logging using Amazon CloudWatch
 
 == Monitoring using AWS X-Ray
-
-== CI/CD using AWS CodePipeline
 
 == Utterances
 
