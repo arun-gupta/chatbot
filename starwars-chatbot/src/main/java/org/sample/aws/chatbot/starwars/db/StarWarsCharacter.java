@@ -101,7 +101,7 @@ public class StarWarsCharacter {
         this.forceSensitive = forceSensitive;
     }
 
-    @DynamoDBAttribute
+    @DynamoDBAttribute(attributeName = "force-side")
     public String getForceSide() {
         return forceSide;
     }
