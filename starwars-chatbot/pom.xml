@@ -68,7 +68,7 @@
             <plugin>
                 <groupId>com.github.seanroy</groupId>
                 <artifactId>lambda-maven-plugin</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.3</version>
                 <configuration>
                     <functionCode>${project.basedir}/target/${project.artifactId}-${project.version}.jar</functionCode>
                     <version>${project.version}</version>
@@ -76,6 +76,7 @@
                     <region>us-east-1</region>
                     <lambdaRoleArn>arn:aws:iam::091144949931:role/lambda_services</lambdaRoleArn>
                     <publish>true</publish>
+                    <forceUpdate>true</forceUpdate>
 
                     <!-- default -->
                     <runtime>java8</runtime>
@@ -96,7 +97,13 @@
                             {
                                 "functionName":"StarWarsLexbot",
                                 "description":"Star Wars Lexbot",
-                                "handler":"org.sample.aws.chatbot.starwars.lex.StarWarsLexBot"
+                                "handler":"org.sample.aws.chatbot.starwars.lex.StarWarsLexBot",
+                                "triggers": [
+                                    {
+                                        "integration": "Lex",
+                                        "lexBotName": "StarWarsLexbot"
+                                    }
+                                ]
                             }
                         ]
                     </lambdaFunctionsJSON>
