@@ -1,37 +1,194 @@
 {
-  "intents": [
+  "intents":[
     {
-      "intent": "MovieIntent"
-    },
-    {
-      "intent": "PlanetIntent",
-      "slots": [
+      "name":"LightsaberIntent",
+      "samples":[
+        "what color is {character} lightsaber",
+        "what is the color of {character} lightsaber",
+        "what\u0027s the color of {character} lightsaber"
+      ],
+      "slots":[
         {
-          "name": "character",
-          "type": "STAR_WARS_CHARACTERS"
+          "name":"character",
+          "type":"STAR_WARS_CHARACTER",
+          "samples":[
+
+          ]
         }
       ]
     },
     {
-      "intent": "LightsaberIntent",
-      "slots": [
+      "name":"QuotesIntent",
+      "samples":[
+        "Tell me a {character} quote"
+      ],
+      "slots":[
         {
-          "name": "character",
-          "type": "STAR_WARS_CHARACTERS"
+          "name":"character",
+          "type":"STAR_WARS_CHARACTER",
+          "samples":[
+
+          ]
         }
       ]
     },
     {
-      "intent": "QuotesIntent",
-      "slots": [
+      "name":"PlanetIntent",
+      "samples":[
+        "what planet is {character} from",
+        "where is {character} from",
+        "where planet was {character} born on"
+      ],
+      "slots":[
         {
-          "name": "character",
-          "type": "STAR_WARS_CHARACTERS"
+          "name":"character",
+          "type":"STAR_WARS_CHARACTER",
+          "samples":[
+
+          ]
         }
       ]
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
     }
-  ]
+  ],
+  "types":[
+    {
+      "name":"STAR_WARS_CHARACTER",
+      "values":[
+        {
+          "name":{
+            "value":"Luke Skywalker",
+            "synonyms":[
+              "Luke"
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Obi-wan Kenobi",
+            "synonyms":[
+              "Obi-wan"
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Yoda",
+            "synonyms":[
+
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Han Solo",
+            "synonyms":[
+
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Darth Vader",
+            "synonyms":[
+              "Vader"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "prompts":[
+    {
+      "id":"Elicit.Intent-LightsaberIntent.IntentSlot-character",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"What character?"
+        }
+      ]
+    },
+    {
+      "id":"Elicit.Intent-QuotesIntent.IntentSlot-character",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"What character?"
+        }
+      ]
+    },
+    {
+      "id":"Elicit.Intent-PlanetIntent.IntentSlot-character",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"What character?"
+        }
+      ]
+    }
+  ],
+  "dialog":{
+    "version":"1.0",
+    "intents":[
+      {
+        "name":"LightsaberIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+          {
+            "name":"character",
+            "type":"STAR_WARS_CHARACTER",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-LightsaberIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name":"QuotesIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+          {
+            "name":"character",
+            "type":"STAR_WARS_CHARACTER",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-QuotesIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name":"PlanetIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+          {
+            "name":"character",
+            "type":"STAR_WARS_CHARACTER",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-PlanetIntent.IntentSlot-character"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
