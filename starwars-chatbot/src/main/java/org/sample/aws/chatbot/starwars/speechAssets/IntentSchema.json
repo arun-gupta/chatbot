@@ -1,31 +1,14 @@
 {
   "intents":[
     {
-      "name":"LightsaberIntent",
-      "samples":[
-        "what color is {character} lightsaber",
-        "what is the color of {character} lightsaber",
-        "what\u0027s the color of {character} lightsaber"
-      ],
-      "slots":[
-        {
-          "name":"character",
-          "type":"STAR_WARS_CHARACTER",
-          "samples":[
-
-          ]
-        }
-      ]
-    },
-    {
-      "name":"QuotesIntent",
+      "name":"StarWarsQuotesIntent",
       "samples":[
         "Tell me a {character} quote"
       ],
       "slots":[
         {
           "name":"character",
-          "type":"STAR_WARS_CHARACTER",
+          "type":"StarWarsCharacters",
           "samples":[
 
           ]
@@ -33,7 +16,67 @@
       ]
     },
     {
-      "name":"PlanetIntent",
+      "name":"StarWarsForceSensitiveIntent",
+      "samples":[
+        "Is {character} force-sensitive",
+        "Can {character} use the force"
+      ],
+      "slots":[
+        {
+          "name":"character",
+          "type":"StarWarsCharacters",
+          "samples":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "name":"StarWarsForceSideIntent",
+      "samples":[
+        "What side of the force was {character} on",
+        "Was {character} on the Light or Dark side of the force",
+        "Was {character} affiliated with the Jedi or the Sith"
+      ],
+      "slots":[
+        {
+          "name":"character",
+          "type":"StarWarsCharacters",
+          "samples":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "name":"StarWarsLightsaberIntent",
+      "samples":[
+        "what is the color of {character} lightsaber",
+        "what color is {character} lightsaber",
+        "what\u0027s the color of {character} lightsaber"
+      ],
+      "slots":[
+        {
+          "name":"character",
+          "type":"StarWarsCharacters",
+          "samples":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "name":"StarWarsAskQuestionIntent",
+      "samples":[
+        "Ask me a dialog question",
+        "Ask me a line question"
+      ],
+      "slots":[
+
+      ]
+    },
+    {
+      "name":"StarWarsPlanetIntent",
       "samples":[
         "what planet is {character} from",
         "where is {character} from",
@@ -42,7 +85,7 @@
       "slots":[
         {
           "name":"character",
-          "type":"STAR_WARS_CHARACTER",
+          "type":"StarWarsCharacters",
           "samples":[
 
           ]
@@ -52,7 +95,7 @@
   ],
   "types":[
     {
-      "name":"STAR_WARS_CHARACTER",
+      "name":"StarWarsCharacters",
       "values":[
         {
           "name":{
@@ -82,7 +125,7 @@
           "name":{
             "value":"Han Solo",
             "synonyms":[
-
+              "Han"
             ]
           }
         },
@@ -99,35 +142,57 @@
   ],
   "prompts":[
     {
-      "id":"Elicit.Intent-LightsaberIntent.IntentSlot-character",
+      "id":"Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character",
       "promptVersion":"1.0",
       "definitionVersion":"1.0",
       "variations":[
         {
           "type":"PlainText",
-          "value":"What character?"
+          "value":"Which character"
         }
       ]
     },
     {
-      "id":"Elicit.Intent-QuotesIntent.IntentSlot-character",
+      "id":"Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character",
       "promptVersion":"1.0",
       "definitionVersion":"1.0",
       "variations":[
         {
           "type":"PlainText",
-          "value":"What character?"
+          "value":"Which character"
         }
       ]
     },
     {
-      "id":"Elicit.Intent-PlanetIntent.IntentSlot-character",
+      "id":"Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character",
       "promptVersion":"1.0",
       "definitionVersion":"1.0",
       "variations":[
         {
           "type":"PlainText",
-          "value":"What character?"
+          "value":"Which character"
+        }
+      ]
+    },
+    {
+      "id":"Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"Which character"
+        }
+      ]
+    },
+    {
+      "id":"Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"Which character"
         }
       ]
     }
@@ -136,7 +201,7 @@
     "version":"1.0",
     "intents":[
       {
-        "name":"LightsaberIntent",
+        "name":"StarWarsQuotesIntent",
         "confirmationRequired":false,
         "prompts":{
 
@@ -144,17 +209,17 @@
         "slots":[
           {
             "name":"character",
-            "type":"STAR_WARS_CHARACTER",
+            "type":"StarWarsCharacters",
             "elicitationRequired":true,
             "confirmationRequired":false,
             "prompts":{
-              "elicit":"Elicit.Intent-LightsaberIntent.IntentSlot-character"
+              "elicit":"Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character"
             }
           }
         ]
       },
       {
-        "name":"QuotesIntent",
+        "name":"StarWarsForceSensitiveIntent",
         "confirmationRequired":false,
         "prompts":{
 
@@ -162,17 +227,17 @@
         "slots":[
           {
             "name":"character",
-            "type":"STAR_WARS_CHARACTER",
+            "type":"StarWarsCharacters",
             "elicitationRequired":true,
             "confirmationRequired":false,
             "prompts":{
-              "elicit":"Elicit.Intent-QuotesIntent.IntentSlot-character"
+              "elicit":"Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character"
             }
           }
         ]
       },
       {
-        "name":"PlanetIntent",
+        "name":"StarWarsForceSideIntent",
         "confirmationRequired":false,
         "prompts":{
 
@@ -180,11 +245,57 @@
         "slots":[
           {
             "name":"character",
-            "type":"STAR_WARS_CHARACTER",
+            "type":"StarWarsCharacters",
             "elicitationRequired":true,
             "confirmationRequired":false,
             "prompts":{
-              "elicit":"Elicit.Intent-PlanetIntent.IntentSlot-character"
+              "elicit":"Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name":"StarWarsLightsaberIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+          {
+            "name":"character",
+            "type":"StarWarsCharacters",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name":"StarWarsAskQuestionIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+
+        ]
+      },
+      {
+        "name":"StarWarsPlanetIntent",
+        "confirmationRequired":false,
+        "prompts":{
+
+        },
+        "slots":[
+          {
+            "name":"character",
+            "type":"StarWarsCharacters",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character"
             }
           }
         ]
