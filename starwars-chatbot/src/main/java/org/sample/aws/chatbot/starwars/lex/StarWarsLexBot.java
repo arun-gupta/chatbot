@@ -8,7 +8,6 @@ import org.sample.aws.lex.request.LexRequest;
 import org.sample.aws.lex.response.DialogAction;
 import org.sample.aws.lex.response.LexResponse;
 import org.sample.aws.lex.response.Message;
-import org.sample.aws.lex.response.ResponseCard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
