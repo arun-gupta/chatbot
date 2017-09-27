@@ -68,11 +68,20 @@
     {
       "name":"StarWarsAskQuestionIntent",
       "samples":[
-        "Ask me a dialog question",
-        "Ask me a line question"
+        "Ask me a dialogue question",
+        "Ask me a line question",
+        "Ask me a quote",
+        "Ask me a movie quote",
+        "Ask me a quote someone said in the movie"
       ],
       "slots":[
+        {
+          "name":"AnswerSlot",
+          "type":"StarWarsCharacters",
+          "samples":[
 
+          ]
+        }
       ]
     },
     {
@@ -186,6 +195,17 @@
       ]
     },
     {
+      "id":"Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot",
+      "promptVersion":"1.0",
+      "definitionVersion":"1.0",
+      "variations":[
+        {
+          "type":"PlainText",
+          "value":"Which character"
+        }
+      ]
+    },
+    {
       "id":"Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character",
       "promptVersion":"1.0",
       "definitionVersion":"1.0",
@@ -279,7 +299,15 @@
 
         },
         "slots":[
-
+          {
+            "name":"AnswerSlot",
+            "type":"StarWarsCharacters",
+            "elicitationRequired":true,
+            "confirmationRequired":false,
+            "prompts":{
+              "elicit":"Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot"
+            }
+          }
         ]
       },
       {
