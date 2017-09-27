@@ -137,28 +137,29 @@ public class StarWarsResponse {
         return new StarWarsResponse(speechText, "Star Wars Force Side");
     }
 
-    public static StarWarsResponse getDialogQuestion() {
+    public static StarWarsResponse getQuoteQuestion() {
         StarWarsCharacter character = DBUtil.getRandomCharacter();
         List<String> list = character.getQuotes();
 
         Random random = new Random();
         String speechText = "Who said \"" + list.get(random.nextInt(list.size())) + "\"";
 
-        StarWarsResponse response = new StarWarsResponse(speechText, "Star Wars Dialog Question");
+        StarWarsResponse response = new StarWarsResponse(speechText, "Star Wars Quote Question");
         response.sessionAttributes.put("character", character.getName());
+        response.sessionAttributes.put("question", speechText);
 
         return response;
     }
 
-    public static StarWarsResponse getDialogResponse(Map<String, String> sessionAttributes) {
-        String character = sessionAttributes.get("character");
+    public static StarWarsResponse getQuoteResponse(String actual, String expected) {
+        String speechText = "";
 
-//        StarWarsCharacter character = DBUtil.getRandomCharacter();
-//        List<String> list = character.getQuotes();
-//
-//        Random random = new Random();
-//        String speechText = "Who said \"" + list.get(random.nextInt(list.size())) + "\"";
+        if (actual.equals(expected)) {
+            speechText = "Yep, you're right!";
+        } else {
+            speechText = "Nope";
+        }
 
-        return new StarWarsResponse("still checking", "Star Wars Dialog Response");
+        return new StarWarsResponse(speechText, "Star Wars Quote Response");
     }
 }

@@ -35,13 +35,20 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
             return getForceSensitiveResponse(character);
         } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intent)) {
             return getForceSideResponse(character);
-        } else if (StarWarsIntent.DIALOG_INTENT.equals(intent)) {
-            System.out.println("Invocation source: " + request.getInvocationSource());
-            if (request.getInvocationSource().equals(LexRequest.INVOCATION_SOURCE_DIALOG_CODE_HOOK)) {
-                return getDialogQuestion();
+        } else if (StarWarsIntent.QUESTION_INTENT.equals(intent)) {
+
+            String actualCharacter = request.getInputTranscript();
+            String expectedCharacter = request.getSessionAttributes().get("character");
+            String question = request.getSessionAttributes().get("question");
+
+            System.out.println("expected/character: " + expectedCharacter);
+            System.out.println("actual: " + actualCharacter);
+            System.out.println("question: " + question);
+
+            if (null != expectedCharacter && null != actualCharacter && expectedCharacter.equals(actualCharacter)) {
+                return getQuoteResponse(actualCharacter, expectedCharacter);
             } else {
-                request.getCurrentIntent().getSlots().forEach((k, v) -> System.out.println(k + ":" + v));
-                return getDialogResponse(request.getSessionAttributes());
+                return getQuoteQuestion(request.getSessionAttributes());
             }
         } else if ("AMAZON.HelpIntent".equals(intent)) {
             return getHelpResponse();
@@ -80,28 +87,48 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getDialogQuestion() {
-        StarWarsResponse response = StarWarsResponse.getDialogQuestion();
+    private LexResponse getQuoteQuestion(Map<String, String> sessionAttributes) {
+        System.out.println("getQuoteQuestion");
+
+        LexResponse lexResponse = new LexResponse();
+
+        String answered = sessionAttributes.get("answered");
+//        String character = sessionAttributes.get("character");
+        String question = sessionAttributes.get("question");
+
+        if ((null != answered && answered.equals("yes") ||
+                (null == question))) {
+            System.out.println("Getting a new question");
+            StarWarsResponse response = StarWarsResponse.getQuoteQuestion();
+            String character = response.getSessionAttributes().get("character");
+            question = response.getSessionAttributes().get("question");
+
+            lexResponse.addAttribute("character", character);
+            lexResponse.addAttribute("question", question);
+            lexResponse.addAttribute("answered", "no");
+        }
 
         DialogAction dialogAction = new DialogAction();
-        dialogAction.setIntentName(StarWarsIntent.DIALOG_INTENT);
-        dialogAction.setSlotToElicit("character");
         dialogAction.setType(DialogAction.ELICIT_SLOT_TYPE);
-
-        Message message = new Message(Message.CONTENT_TYPE_PLAIN_TEXT, response.getSpeechText());
+        Message message = new Message();
+        message.setContentType(Message.CONTENT_TYPE_PLAIN_TEXT);
+        message.setContent(question);
         dialogAction.setMessage(message);
+        dialogAction.setIntentName(StarWarsIntent.QUESTION_INTENT);
+        dialogAction.setSlotToElicit("AnswerSlot");
+        dialogAction.addSlots("AnswerSlot", "");
 
-        dialogAction.addSlots("character", "");
-
-        LexResponse lexResponse = new LexResponse(dialogAction);
-        lexResponse.setSessionAttributes(response.getSessionAttributes());
+        lexResponse.setDialogAction(dialogAction);
 
         return lexResponse;
     }
 
-    private LexResponse getDialogResponse(Map<String, String> sessionAttributes) {
-        StarWarsResponse response = StarWarsResponse.getDialogResponse(sessionAttributes);
-        return getLexResponse(response.getSpeechText(), response.getTitle());
+    private LexResponse getQuoteResponse(String actual, String expected) {
+        StarWarsResponse response = StarWarsResponse.getQuoteResponse(actual, expected);
+        LexResponse lexResponse = getLexResponse(response.getSpeechText(), response.getTitle());
+        lexResponse.addAttribute("answered", "yes");
+        lexResponse.clearAttributes();
+        return lexResponse;
     }
 
     private LexResponse getHelpResponse() {
