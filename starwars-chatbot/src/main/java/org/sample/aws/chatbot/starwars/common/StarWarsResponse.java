@@ -158,7 +158,7 @@ public class StarWarsResponse {
         return new StarWarsResponse(speechText, "Star Wars Force Side");
     }
 
-    public static StarWarsResponse getQuoteQuestion() {
+    public static StarWarsResponse getDialogueQuestion() {
         StarWarsCharacter character = DBUtil.getRandomCharacter();
         List<String> list = character.getQuotes();
 
@@ -172,10 +172,10 @@ public class StarWarsResponse {
         return response;
     }
 
-    public static StarWarsResponse getQuoteResponse(String actual, String expected) {
+    public static StarWarsResponse getDialogueResponse(String actual, String expected) {
         String speechText = "";
 
-        if (actual.equals(expected)) {
+        if (actual.toLowerCase().equals(expected.toLowerCase())) {
             speechText = "Yep, you're right!";
         } else {
             speechText = "Nope";

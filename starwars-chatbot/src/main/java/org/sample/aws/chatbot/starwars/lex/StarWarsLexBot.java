@@ -99,7 +99,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         if ((null != answered && answered.equals("yes") ||
                 (null == question))) {
             System.out.println("Getting a new question");
-            StarWarsResponse response = StarWarsResponse.getQuoteQuestion();
+            StarWarsResponse response = StarWarsResponse.getDialogueQuestion();
             String character = response.getSessionAttributes().get("character");
             question = response.getSessionAttributes().get("question");
 
@@ -124,7 +124,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
     }
 
     private LexResponse getDialogueResponse(String actual, String expected) {
-        StarWarsResponse response = StarWarsResponse.getQuoteResponse(actual, expected);
+        StarWarsResponse response = StarWarsResponse.getDialogueResponse(actual, expected);
         LexResponse lexResponse = getLexResponse(response.getSpeechText(), response.getTitle());
         lexResponse.addAttribute("answered", "yes");
         lexResponse.clearAttributes();
