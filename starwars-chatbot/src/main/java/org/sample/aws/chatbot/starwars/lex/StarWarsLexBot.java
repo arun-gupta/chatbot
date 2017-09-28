@@ -45,8 +45,10 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
             System.out.println("actual: " + actualCharacter);
             System.out.println("question: " + question);
 
-            if (null != expectedCharacter && null != actualCharacter && expectedCharacter.equals(actualCharacter)) {
-                return getDialogueResponse(actualCharacter, expectedCharacter);
+            if (null != expectedCharacter &&
+                    null != actualCharacter &&
+                    expectedCharacter.toLowerCase().equals(actualCharacter.toLowerCase())) {
+                return getDialogueResponse();
             } else {
                 return getDialogueQuestion(request.getSessionAttributes());
             }
@@ -123,8 +125,8 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         return lexResponse;
     }
 
-    private LexResponse getDialogueResponse(String actual, String expected) {
-        StarWarsResponse response = StarWarsResponse.getDialogueResponse(actual, expected);
+    private LexResponse getDialogueResponse() {
+        StarWarsResponse response = StarWarsResponse.getDialogueResponse();
         LexResponse lexResponse = getLexResponse(response.getSpeechText(), response.getTitle());
         lexResponse.addAttribute("answered", "yes");
         lexResponse.clearAttributes();

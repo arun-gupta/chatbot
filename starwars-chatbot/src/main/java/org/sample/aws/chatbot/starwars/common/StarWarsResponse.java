@@ -172,14 +172,8 @@ public class StarWarsResponse {
         return response;
     }
 
-    public static StarWarsResponse getDialogueResponse(String actual, String expected) {
-        String speechText = "";
-
-        if (actual.toLowerCase().equals(expected.toLowerCase())) {
-            speechText = "Yep, you're right!";
-        } else {
-            speechText = "Nope";
-        }
+    public static StarWarsResponse getDialogueResponse() {
+        String speechText = "Yep, you're right!";
 
         return new StarWarsResponse(speechText, "Star Wars Quote Response");
     }
