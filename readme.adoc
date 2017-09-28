@@ -36,7 +36,7 @@ Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
 {
   "dead": true,
   "force-sensitive": true,
-  "forceside": "light",
+  "force-side": "light",
   "id": 1,
   "lightsaber": "green",
   "planet": "Dagobah",
