@@ -83,7 +83,9 @@ public class StarWarsResponse {
             if (null == character.getLightsaberColor()) {
                 speechText = character.getName() + " does not have a lightsaber";
             } else {
-                speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
+                speechText = character.getName() +
+                        "'s ligthsaber is " +
+                        character.getLightsaberColor();
             }
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
@@ -101,7 +103,11 @@ public class StarWarsResponse {
             System.out.println("getQuotesResponse: " + character.getName());
             List<String> list = character.getQuotes();
             Random random = new Random();
-            speechText = "Here is a quote from " + character.getName() + ": " + list.get(random.nextInt(list.size()));
+            speechText = "Here is a quote from " +
+                    character.getName() +
+                    ": \"" +
+                    list.get(random.nextInt(list.size())) +
+                            "\"";
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
