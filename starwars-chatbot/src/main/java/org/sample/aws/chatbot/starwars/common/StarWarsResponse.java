@@ -145,7 +145,7 @@ public class StarWarsResponse {
                 speechText = character.getName() +
                         " is on the " +
                         character.getForceSide() +
-                        " side, and so was a " +
+                        " side, and so is a " +
                         (character.getForceSide().equals("light") ? "Jedi" : "Sith");
             } else {
                 speechText = character.getName() + " is not sensitive to the Force";
