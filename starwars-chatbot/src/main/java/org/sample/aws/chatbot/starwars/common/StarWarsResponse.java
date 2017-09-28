@@ -141,11 +141,15 @@ public class StarWarsResponse {
         String speechText;
 
         if (character != null && character.getName() != null) {
-            speechText = character.getName() +
-                    " was on the " +
-                    character.getForceSide() +
-                    " side, and so was a " +
-                    (character.getForceSide().equals("light") ? "Jedi" : "Sith");
+            if (character.isForceSensitive()) {
+                speechText = character.getName() +
+                        " is on the " +
+                        character.getForceSide() +
+                        " side, and so was a " +
+                        (character.getForceSide().equals("light") ? "Jedi" : "Sith");
+            } else {
+                speechText = character.getName() + " is not sensitive to the Force";
+            }
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
