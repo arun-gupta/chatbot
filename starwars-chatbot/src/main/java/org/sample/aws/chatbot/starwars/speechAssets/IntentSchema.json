@@ -3,7 +3,10 @@
     {
       "name":"StarWarsQuotesIntent",
       "samples":[
-        "Tell me a {character} quote"
+        "Tell me a {character} quote",
+        "Tell me a quote by {character}",
+        "give me a quote from {character}",
+        "give me a {character} quote"
       ],
       "slots":[
         {
@@ -89,7 +92,8 @@
       "samples":[
         "what planet is {character} from",
         "where is {character} from",
-        "where planet was {character} born on"
+        "what planet was {character} born on",
+        "where was {character} born"
       ],
       "slots":[
         {
@@ -108,6 +112,14 @@
       "values":[
         {
           "name":{
+            "value":"Princess Leia",
+            "synonyms":[
+              "Leia"
+            ]
+          }
+        },
+        {
+          "name":{
             "value":"Luke Skywalker",
             "synonyms":[
               "Luke"
@@ -124,6 +136,14 @@
         },
         {
           "name":{
+            "value":"Boba Fett",
+            "synonyms":[
+
+            ]
+          }
+        },
+        {
+          "name":{
             "value":"Yoda",
             "synonyms":[
 
@@ -135,6 +155,22 @@
             "value":"Han Solo",
             "synonyms":[
               "Han"
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Emperor Palpatine",
+            "synonyms":[
+              "Palpatine"
+            ]
+          }
+        },
+        {
+          "name":{
+            "value":"Kylo Ren",
+            "synonyms":[
+              "Ren"
             ]
           }
         },
