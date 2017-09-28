@@ -59,8 +59,14 @@ public class StarWarsResponse {
 
         String speechText;
 
-        if (character != null && character.getName()!= null) {
-            speechText = character.getName() + " is from " + character.getPlanet();
+        if (character != null && character.getName() != null) {
+            String planet = character.getPlanet();
+
+            if (null == planet || planet.equals("")) {
+                speechText = character.getName() + "'s planet is not known";
+            } else {
+                speechText = character.getName() + " is from the planet " + planet;
+            }
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
@@ -73,8 +79,12 @@ public class StarWarsResponse {
 
         String speechText;
 
-        if (character != null && character.getName()!= null) {
-            speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
+        if (character != null && character.getName() != null) {
+            if (null == character.getLightsaberColor()) {
+                speechText = character.getName() + " does not have a lightsaber";
+            } else {
+                speechText = character.getName() + "'s ligthsaber is " + character.getLightsaberColor();
+            }
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
@@ -87,7 +97,8 @@ public class StarWarsResponse {
 
         String speechText;
 
-        if (character != null && character.getName()!= null) {
+        if (character != null && character.getName() != null) {
+            System.out.println("getQuotesResponse: " + character.getName());
             List<String> list = character.getQuotes();
             Random random = new Random();
             speechText = "Here is a quote from " + character.getName() + ": " + list.get(random.nextInt(list.size()));
@@ -105,7 +116,7 @@ public class StarWarsResponse {
 
         String speechText;
 
-        if (character != null && character.getName()!= null) {
+        if (character != null && character.getName() != null) {
             speechText = (character.isForceSensitive() ? "Yes, " : "No, ") +
                     character.getName() +
                     " is " + (character.isForceSensitive() ? "" : " not ") +
@@ -123,12 +134,12 @@ public class StarWarsResponse {
 
         String speechText;
 
-        if (character != null && character.getName()!= null) {
+        if (character != null && character.getName() != null) {
             speechText = character.getName() +
                     " was on the " +
                     character.getForceSide() +
                     " side, and so was a " +
-                    (character.getForceSide() == "light" ? "Jedi" : "Sith");
+                    (character.getForceSide().equals("light") ? "Jedi" : "Sith");
         } else {
             speechText = "Are you sure " + slotValue + " was in Star Wars?";
         }
