@@ -27,7 +27,7 @@ ARN for Alexa function: `aws lambda get-function --function-name StarWarsChatbot
 
 NOTE: Getting Started with Alexa skill using Java is explained at https://github.com/arun-gupta/alexa-skill-java.
 
-== Load Star Wars knowledge
+== JSON Document
 
 Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
 
