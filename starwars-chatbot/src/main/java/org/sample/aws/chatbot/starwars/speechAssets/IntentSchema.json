@@ -39,7 +39,9 @@
       "samples":[
         "What side of the force was {character} on",
         "Was {character} on the Light or Dark side of the force",
-        "Was {character} affiliated with the Jedi or the Sith"
+        "Was {character} affiliated with the Jedi or the Sith",
+        "was {character} a jedi",
+        "was {character} a sith"
       ],
       "slots":[
         {
@@ -93,7 +95,8 @@
         "what planet is {character} from",
         "where is {character} from",
         "what planet was {character} born on",
-        "where was {character} born"
+        "where was {character} born",
+        "what is {character} planet"
       ],
       "slots":[
         {
