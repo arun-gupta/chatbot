@@ -64,12 +64,12 @@ public class StarwarsSpeechlet implements Speechlet {
         } else if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
             return getQuotesResponse(character);
         } else if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
-            return getPlanetResponse(intent.getSlot("character").getValue());
+            return getPlanetResponse(character);
         } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intentName)) {
             return getLightsaberResponse(character);
-        } else if (StarWarsIntent.FORCE_SENSITIVE_INTENT.equals(intent)) {
+        } else if (StarWarsIntent.FORCE_SENSITIVE_INTENT.equals(intentName)) {
             return getForceSensitiveResponse(character);
-        } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intent)) {
+        } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intentName)) {
             return getForceSideResponse(character);
         } else {
             throw new SpeechletException("Invalid Intent: " + intentName);
@@ -98,27 +98,27 @@ public class StarwarsSpeechlet implements Speechlet {
 
     private SpeechletResponse getQuotesResponse(String name) {
         StarWarsResponse response = StarWarsResponse.getQuotesResponse(name);
-        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getPlanetResponse(String name) {
         StarWarsResponse response = StarWarsResponse.getPlanetResponse(name);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getLightsaberResponse(String name) {
         StarWarsResponse response = StarWarsResponse.getLightsaberResponse(name);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getForceSensitiveResponse(String name) {
         StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(name);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getForceSideResponse(String name) {
         StarWarsResponse response = StarWarsResponse.getForceSideResponse(name);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SimpleCard getCard(String title, String speechText) {
