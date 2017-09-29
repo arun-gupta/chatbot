@@ -23,6 +23,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
         String intent = request.getCurrentIntent().getName();
         String character = request.getCurrentIntent().getSlots().get("character");
+
         if (StarWarsIntent.QUOTES_INTENT.equals(intent)) {
             return getQuotesResponse(character);
         } else if (StarWarsIntent.PLANET_INTENT.equals(intent)) {
@@ -63,28 +64,28 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getPlanetResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getPlanetResponse(slotValue);
+    private LexResponse getQuotesResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getQuotesResponse(name);
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getLightsaberResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(slotValue);
+    private LexResponse getPlanetResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getPlanetResponse(name);
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getQuotesResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getQuotesResponse(slotValue);
+    private LexResponse getLightsaberResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(name);
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getForceSensitiveResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(slotValue);
+    private LexResponse getForceSensitiveResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(name);
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private LexResponse getForceSideResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getForceSideResponse(slotValue);
+    private LexResponse getForceSideResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getForceSideResponse(name);
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
