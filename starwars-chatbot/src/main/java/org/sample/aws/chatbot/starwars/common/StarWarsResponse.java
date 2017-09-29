@@ -41,8 +41,8 @@ public class StarWarsResponse {
         return new StarWarsResponse(help, "Star Wars Help");
     }
 
-    public static StarWarsResponse getPlanetResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+    public static StarWarsResponse getPlanetResponse(String name) {
+        StarWarsCharacter character = DBUtil.getCharacter(name);
 
         String speechText;
 
@@ -55,14 +55,14 @@ public class StarWarsResponse {
                 speechText = character.getName() + " is from the planet " + planet;
             }
         } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+            speechText = "Are you sure " + name + " was in Star Wars?";
         }
 
         return new StarWarsResponse(speechText, "Star Wars Planet");
     }
 
-    public static StarWarsResponse getLightsaberResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+    public static StarWarsResponse getLightsaberResponse(String name) {
+        StarWarsCharacter character = DBUtil.getCharacter(name);
 
         String speechText;
 
@@ -75,14 +75,14 @@ public class StarWarsResponse {
                         character.getLightsaberColor();
             }
         } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+            speechText = "Are you sure " + name + " was in Star Wars?";
         }
         return new StarWarsResponse(speechText, "Star Wars Lightsaber");
     }
 
 
-    public static StarWarsResponse getQuotesResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+    public static StarWarsResponse getQuotesResponse(String name) {
+        StarWarsCharacter character = DBUtil.getCharacter(name);
 
         String speechText;
 
@@ -96,7 +96,7 @@ public class StarWarsResponse {
                     list.get(random.nextInt(list.size())) +
                             "\"";
         } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+            speechText = "Are you sure " + name + " was in Star Wars?";
         }
 
         // Create the Simple card content.
@@ -104,8 +104,8 @@ public class StarWarsResponse {
     }
 
 
-    public static StarWarsResponse getForceSensitiveResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+    public static StarWarsResponse getForceSensitiveResponse(String name) {
+        StarWarsCharacter character = DBUtil.getCharacter(name);
 
         String speechText;
 
@@ -115,15 +115,15 @@ public class StarWarsResponse {
                     " is " + (character.isForceSensitive() ? "" : " not ") +
                     " sensitive to the Force.";
         } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+            speechText = "Are you sure " + name + " was in Star Wars?";
         }
 
         // Create the Simple card content.
         return new StarWarsResponse(speechText, "Star Wars Force Sensitive");
     }
 
-    public static StarWarsResponse getForceSideResponse(String slotValue) {
-        StarWarsCharacter character = DBUtil.getCharacter(slotValue);
+    public static StarWarsResponse getForceSideResponse(String name) {
+        StarWarsCharacter character = DBUtil.getCharacter(name);
 
         String speechText;
 
@@ -138,7 +138,7 @@ public class StarWarsResponse {
                 speechText = character.getName() + " is not sensitive to the Force";
             }
         } else {
-            speechText = "Are you sure " + slotValue + " was in Star Wars?";
+            speechText = "Are you sure " + name + " was in Star Wars?";
         }
 
         // Create the Simple card content.
