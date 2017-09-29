@@ -57,16 +57,22 @@ public class StarwarsSpeechlet implements Speechlet {
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
 
-        if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
+        String character = request.getIntent().getSlot("character").getValue();
+
+        if ("AMAZON.HelpIntent".equals(intentName)) {
+            return getHelpResponse();
+        } else if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
+            return getQuotesResponse(character);
+        } else if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
             return getPlanetResponse(intent.getSlot("character").getValue());
         } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intentName)) {
-            return getLightsaberResponse(intent.getSlot("character").getValue());
-        } else if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
-            return getQuotesResponse(intent.getSlot("character").getValue());
-        } else if ("AMAZON.HelpIntent".equals(intentName)) {
-            return getHelpResponse();
+            return getLightsaberResponse(character);
+        } else if (StarWarsIntent.FORCE_SENSITIVE_INTENT.equals(intent)) {
+            return getForceSensitiveResponse(character);
+        } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intent)) {
+            return getForceSideResponse(character);
         } else {
-            throw new SpeechletException("Invalid Intent");
+            throw new SpeechletException("Invalid Intent: " + intentName);
         }
     }
 
@@ -102,6 +108,16 @@ public class StarwarsSpeechlet implements Speechlet {
 
     private SpeechletResponse getQuotesResponse(String slotValue) {
         StarWarsResponse response = StarWarsResponse.getQuotesResponse(slotValue);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+    }
+
+    private SpeechletResponse getForceSensitiveResponse(String slotValue) {
+        StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(slotValue);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+    }
+
+    private SpeechletResponse getForceSideResponse(String slotValue) {
+        StarWarsResponse response = StarWarsResponse.getForceSideResponse(slotValue);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 

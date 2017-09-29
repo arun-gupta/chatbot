@@ -23,12 +23,12 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
         String intent = request.getCurrentIntent().getName();
         String character = request.getCurrentIntent().getSlots().get("character");
-        if (StarWarsIntent.PLANET_INTENT.equals(intent)) {
+        if (StarWarsIntent.QUOTES_INTENT.equals(intent)) {
+            return getQuotesResponse(character);
+        } else if (StarWarsIntent.PLANET_INTENT.equals(intent)) {
             return getPlanetResponse(character);
         } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intent)) {
             return getLightsaberResponse(character);
-        } else if (StarWarsIntent.QUOTES_INTENT.equals(intent)) {
-            return getQuotesResponse(character);
         } else if (StarWarsIntent.FORCE_SENSITIVE_INTENT.equals(intent)) {
             return getForceSensitiveResponse(character);
         } else if (StarWarsIntent.FORCE_SIDE_INTENT.equals(intent)) {
