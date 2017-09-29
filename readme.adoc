@@ -97,6 +97,10 @@ image::images/slack.png[width="50%"]
 
 Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
 
+=== Alexa
+
+. Test using http://echosim.io or Alexa
+
 === Web
 
 TODO
@@ -105,24 +109,13 @@ TODO
 
 TODO
 
-=== Alexa
-
-. Test using http://echosim.io or Alexa
-
 == Logging using Amazon CloudWatch
 
 == Monitoring using AWS X-Ray
 
-== Utterances
+TODO
 
-Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is:
+== How to talk to the chatbot?
 
-. what planet is {character} from
-. what color is {character} ligthsaber
-. Tell me a {character} quote
-
-== Wishlist
-
-. https://github.com/arun-gupta/chatbot/issues/2[CI/CD pipeline for Chatbot using CodePipeline]
-. https://github.com/arun-gupta/chatbot/issues/4[Jabber]
+Use phrase `Ask Star Wars` for Alexa, otherwise just the text as is. The list of questions is at https://github.com/arun-gupta/chatbot/wiki/Typical-Questions.
 
