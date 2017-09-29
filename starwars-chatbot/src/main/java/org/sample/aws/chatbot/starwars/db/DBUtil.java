@@ -61,9 +61,10 @@ public class DBUtil {
     }
 
     public static StarWarsCharacter getCharacter(String name) {
+        System.out.println("Name: " + name);
         DynamoDBMapper mapper = new DynamoDBMapper(getClient());
         Map<String, AttributeValue> eav = new HashMap<>();
-        eav.put(":name", new AttributeValue().withS(name));
+        eav.put(":name", new AttributeValue().withS(name.toLowerCase()));
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withFilterExpression("whoami = :name")
                 .withExpressionAttributeValues(eav);
