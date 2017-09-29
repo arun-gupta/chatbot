@@ -13,6 +13,8 @@ public class StarWarsResponse {
     String title;
     Map<String, String> sessionAttributes;
 
+    private static final String help = "You can ask quotes, lightsaber color, Jedi or Sith questions.";
+
     public StarWarsResponse(String speechText, String title) {
         this.speechText = speechText;
         this.title = title;
@@ -31,8 +33,12 @@ public class StarWarsResponse {
         return sessionAttributes;
     }
 
+    public static StarWarsResponse getWelcomeResponse() {
+        return new StarWarsResponse("Welcome to Star Wars Chatbot!" + help, "Star Wars Welcome");
+    }
+
     public static StarWarsResponse getHelpResponse() {
-        return new StarWarsResponse("Welcome to Star Wars Chatbot! You can ask quotes, questions about lightsaber, Jedi or Sith questions.", "Star Wars Welcome");
+        return new StarWarsResponse(help, "Star Wars Help");
     }
 
     public static StarWarsResponse getPlanetResponse(String slotValue) {
