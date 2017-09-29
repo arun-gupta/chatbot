@@ -96,28 +96,28 @@ public class StarwarsSpeechlet implements Speechlet {
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getPlanetResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getPlanetResponse(slotValue);
+    private SpeechletResponse getQuotesResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getQuotesResponse(name);
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
+    }
+
+    private SpeechletResponse getPlanetResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getPlanetResponse(name);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getLightsaberResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(slotValue);
+    private SpeechletResponse getLightsaberResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(name);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getQuotesResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getQuotesResponse(slotValue);
+    private SpeechletResponse getForceSensitiveResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(name);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getForceSensitiveResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getForceSensitiveResponse(slotValue);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
-    }
-
-    private SpeechletResponse getForceSideResponse(String slotValue) {
-        StarWarsResponse response = StarWarsResponse.getForceSideResponse(slotValue);
+    private SpeechletResponse getForceSideResponse(String name) {
+        StarWarsResponse response = StarWarsResponse.getForceSideResponse(name);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
