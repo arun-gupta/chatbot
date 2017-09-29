@@ -14,7 +14,7 @@ import org.sample.aws.chatbot.starwars.alexa.StarwarsSpeechlet;
 public class StarwarsSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {
     private static final Set<String> SUPPORTED_APPLICATION_IDS = new HashSet<>();
     static {
-        SUPPORTED_APPLICATION_IDS.add("amzn1.ask.skill.eaed0f8b-5003-4e3e-87b2-bf1fe927ae99");
+        SUPPORTED_APPLICATION_IDS.add("amzn1.ask.skill.81e128e4-dd7a-4585-aa16-e3d9b1459962");
     }
 
     public StarwarsSpeechletRequestStreamHandler() {

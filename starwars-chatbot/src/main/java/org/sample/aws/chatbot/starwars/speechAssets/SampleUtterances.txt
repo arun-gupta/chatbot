@@ -11,7 +11,7 @@ StarWarsPlanetIntent what is {character} planet
 
 StarWarsLightsaberIntent what is the color of {character} lightsaber
 StarWarsLightsaberIntent what color is {character} lightsaber
-StarWarsLightsaberIntent what\u0027s the color of {character} lightsaber
+StarWarsLightsaberIntent what the color of {character} lightsaber
 
 StarWarsForceSensitiveIntent Is {character} force-sensitive
 StarWarsForceSensitiveIntent Can {character} use the force

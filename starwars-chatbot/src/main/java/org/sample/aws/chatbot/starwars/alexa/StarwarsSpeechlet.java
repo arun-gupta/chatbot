@@ -56,12 +56,9 @@ public class StarwarsSpeechlet implements Speechlet {
 
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
+        String character = intent.getSlot("character").getValue();
 
-        String character = request.getIntent().getSlot("character").getValue();
-
-        if ("AMAZON.HelpIntent".equals(intentName)) {
-            return getHelpResponse();
-        } else if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
+        if (StarWarsIntent.QUOTES_INTENT.equals(intentName)) {
             return getQuotesResponse(character);
         } else if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
             return getPlanetResponse(character);
@@ -82,7 +79,7 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getWelcomeResponse() {
-        StarWarsResponse response = StarWarsResponse.getHelpResponse();
+        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
         return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
@@ -92,23 +89,23 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getHelpResponse() {
-        StarWarsResponse response = StarWarsResponse.getHelpResponse();
+        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getQuotesResponse(String name) {
-        StarWarsResponse response = StarWarsResponse.getQuotesResponse(name);
+    private SpeechletResponse getQuotesResponse(String character) {
+        StarWarsResponse response = StarWarsResponse.getQuotesResponse(character);
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getPlanetResponse(String name) {
-        StarWarsResponse response = StarWarsResponse.getPlanetResponse(name);
-        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
+    private SpeechletResponse getPlanetResponse(String character) {
+        StarWarsResponse response = StarWarsResponse.getPlanetResponse(character);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
-    private SpeechletResponse getLightsaberResponse(String name) {
-        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(name);
-        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
+    private SpeechletResponse getLightsaberResponse(String character) {
+        StarWarsResponse response = StarWarsResponse.getLightsaberResponse(character);
+        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getForceSensitiveResponse(String name) {

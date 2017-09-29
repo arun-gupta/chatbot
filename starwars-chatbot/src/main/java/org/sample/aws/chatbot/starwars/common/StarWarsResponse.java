@@ -87,7 +87,6 @@ public class StarWarsResponse {
         String speechText;
 
         if (character != null && character.getName() != null) {
-            System.out.println("getQuotesResponse: " + character.getName());
             List<String> list = character.getQuotes();
             Random random = new Random();
             speechText = "Here is a quote from " +
