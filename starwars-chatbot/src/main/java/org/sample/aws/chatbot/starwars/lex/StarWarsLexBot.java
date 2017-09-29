@@ -23,9 +23,7 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
         String intent = request.getCurrentIntent().getName();
         String character = request.getCurrentIntent().getSlots().get("character");
-        if (StarWarsIntent.MOVIE_INTENT.equals(intent)) {
-            return getIntroResponse("Star Wars is cool");
-        } else if (StarWarsIntent.PLANET_INTENT.equals(intent)) {
+        if (StarWarsIntent.PLANET_INTENT.equals(intent)) {
             return getPlanetResponse(character);
         } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intent)) {
             return getLightsaberResponse(character);
@@ -38,6 +36,9 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         } else if (StarWarsIntent.QUESTION_INTENT.equals(intent)) {
 
             String actualCharacter = request.getInputTranscript();
+
+            if (request.getSessionAttributes() == null)
+                throw new RuntimeException("Session attributes are null");
             String expectedCharacter = request.getSessionAttributes().get("character");
             String question = request.getSessionAttributes().get("question");
 
@@ -52,15 +53,13 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
             } else {
                 return getDialogueQuestion(request.getSessionAttributes());
             }
-        } else if ("AMAZON.HelpIntent".equals(intent)) {
-            return getHelpResponse();
         } else {
             throw new RuntimeException("Invalid Intent: " + request.getCurrentIntent().getName());
         }
     }
 
-    private LexResponse getIntroResponse(String intro) {
-        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+    private LexResponse getHelpResponse() {
+        StarWarsResponse response = StarWarsResponse.getHelpResponse();
         return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
@@ -94,12 +93,16 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
 
         LexResponse lexResponse = new LexResponse();
 
-        String answered = sessionAttributes.get("answered");
-//        String character = sessionAttributes.get("character");
-        String question = sessionAttributes.get("question");
+        String answered = "";
+        String question = "";
 
-        if ((null != answered && answered.equals("yes") ||
-                (null == question))) {
+        if (sessionAttributes != null) {
+            answered = sessionAttributes.get("answered");
+            question = sessionAttributes.get("question");
+        }
+
+        if ((null == question) ||
+                (null != answered && answered.equals("yes"))) {
             System.out.println("Getting a new question");
             StarWarsResponse response = StarWarsResponse.getDialogueQuestion();
             String character = response.getSessionAttributes().get("character");
@@ -131,11 +134,6 @@ public class StarWarsLexBot implements RequestHandler<LexRequest, LexResponse> {
         lexResponse.addAttribute("answered", "yes");
         lexResponse.clearAttributes();
         return lexResponse;
-    }
-
-    private LexResponse getHelpResponse() {
-        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
-        return getLexResponse(response.getSpeechText(), response.getTitle());
     }
 
     private LexResponse getLexResponse(String speechText, String title) {

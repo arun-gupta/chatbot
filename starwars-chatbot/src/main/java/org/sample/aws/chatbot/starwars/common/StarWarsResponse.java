@@ -31,28 +31,9 @@ public class StarWarsResponse {
         return sessionAttributes;
     }
 
-    public static StarWarsResponse getWelcomeResponse() {
-        return new StarWarsResponse("Welcome to Star Wars Trivia, you can ask quotes", "Star Wars Welcome");
-    }
-
-    /**
-     * Creates a {@code SpeechletResponse} for the hello intent.
-     *
-     * @return SpeechletResponse spoken and visual response for the given intent
-     */
-    public static StarWarsResponse getIntroResponse(String intro) {
-        return new StarWarsResponse("", "Star Wars Intro");
-    }
-
-    /**
-     * Creates a {@code SpeechletResponse} for the help intent.
-     *
-     * @return SpeechletResponse spoken and visual response for the given intent
-     */
     public static StarWarsResponse getHelpResponse() {
-        return new StarWarsResponse("Star Wars", "Star Wars Help");
+        return new StarWarsResponse("Welcome to Star Wars Chatbot! You can ask quotes, questions about lightsaber, Jedi or Sith questions.", "Star Wars Welcome");
     }
-
 
     public static StarWarsResponse getPlanetResponse(String slotValue) {
         StarWarsCharacter character = DBUtil.getCharacter(slotValue);

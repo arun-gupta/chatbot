@@ -57,9 +57,7 @@ public class StarwarsSpeechlet implements Speechlet {
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
 
-        if (StarWarsIntent.MOVIE_INTENT.equals(intentName)) {
-            return getIntroResponse("Star Wars is cool");
-        } else if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
+        if (StarWarsIntent.PLANET_INTENT.equals(intentName)) {
             return getPlanetResponse(intent.getSlot("character").getValue());
         } else if (StarWarsIntent.LIGHTSABER_INTENT.equals(intentName)) {
             return getLightsaberResponse(intent.getSlot("character").getValue());
@@ -78,18 +76,8 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getWelcomeResponse() {
-        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+        StarWarsResponse response = StarWarsResponse.getHelpResponse();
         return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
-    }
-
-    /**
-     * Creates a {@code SpeechletResponse} for the hello intent.
-     *
-     * @return SpeechletResponse spoken and visual response for the given intent
-     */
-    private SpeechletResponse getIntroResponse(String intro) {
-        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
     /**
@@ -98,7 +86,7 @@ public class StarwarsSpeechlet implements Speechlet {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getHelpResponse() {
-        StarWarsResponse response = StarWarsResponse.getWelcomeResponse();
+        StarWarsResponse response = StarWarsResponse.getHelpResponse();
         return getSpeechletResponse(response.getSpeechText(), response.getTitle());
     }
 
