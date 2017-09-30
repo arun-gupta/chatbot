@@ -95,17 +95,17 @@ public class StarwarsSpeechlet implements Speechlet {
 
     private SpeechletResponse getQuotesResponse(String character) {
         StarWarsResponse response = StarWarsResponse.getQuotesResponse(character);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getPlanetResponse(String character) {
         StarWarsResponse response = StarWarsResponse.getPlanetResponse(character);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getLightsaberResponse(String character) {
         StarWarsResponse response = StarWarsResponse.getLightsaberResponse(character);
-        return getSpeechletResponse(response.getSpeechText(), response.getTitle());
+        return getSpeechletResponseWithReprompt(response.getSpeechText(), response.getTitle());
     }
 
     private SpeechletResponse getForceSensitiveResponse(String name) {
