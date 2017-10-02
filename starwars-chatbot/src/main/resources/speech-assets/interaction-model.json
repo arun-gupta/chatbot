@@ -1,1 +1,344 @@
-{"intents":[{"name":"StarWarsQuotesIntent","samples":["Tell me a {character} quote","Tell me a quote by {character}","give me a quote from {character}","give me a {character} quote"],"slots":[{"name":"character","type":"StarWarsCharacters","samples":[]}]},{"name":"StarWarsForceSensitiveIntent","samples":["Is {character} force-sensitive","Can {character} use the force"],"slots":[{"name":"character","type":"StarWarsCharacters","samples":[]}]},{"name":"StarWarsForceSideIntent","samples":["What side of the force was {character} on","Was {character} on the Light or Dark side of the force","Was {character} affiliated with the Jedi or the Sith","was {character} a jedi","was {character} a sith"],"slots":[{"name":"character","type":"StarWarsCharacters","samples":[]}]},{"name":"StarWarsLightsaberIntent","samples":["what is the color of {character} lightsaber","what color is {character} lightsaber","what\u0027s the color of {character} lightsaber"],"slots":[{"name":"character","type":"StarWarsCharacters","samples":[]}]},{"name":"StarWarsAskQuestionIntent","samples":["Ask me a dialogue question","Ask me a line question","Ask me a quote","Ask me a movie quote","Ask me a quote someone said in the movie"],"slots":[{"name":"AnswerSlot","type":"StarWarsCharacters","samples":[]}]},{"name":"StarWarsPlanetIntent","samples":["what planet is {character} from","where is {character} from","what planet was {character} born on","where was {character} born","what is {character} planet"],"slots":[{"name":"character","type":"StarWarsCharacters","samples":[]}]}],"types":[{"name":"StarWarsCharacters","values":[{"name":{"value":"Princess Leia","synonyms":["Leia"]}},{"name":{"value":"Luke Skywalker","synonyms":["Luke"]}},{"name":{"value":"Obi-wan Kenobi","synonyms":["Obi-wan"]}},{"name":{"value":"Boba Fett","synonyms":[]}},{"name":{"value":"Yoda","synonyms":[]}},{"name":{"value":"Han Solo","synonyms":["Han"]}},{"name":{"value":"Emperor Palpatine","synonyms":["Palpatine"]}},{"name":{"value":"Kylo Ren","synonyms":["Ren"]}},{"name":{"value":"Darth Vader","synonyms":["Vader"]}}]}],"prompts":[{"id":"Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]},{"id":"Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]},{"id":"Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]},{"id":"Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]},{"id":"Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]},{"id":"Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character","promptVersion":"1.0","definitionVersion":"1.0","variations":[{"type":"PlainText","value":"Which character"}]}],"dialog":{"version":"1.0","intents":[{"name":"StarWarsQuotesIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"character","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character"}}]},{"name":"StarWarsForceSensitiveIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"character","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character"}}]},{"name":"StarWarsForceSideIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"character","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character"}}]},{"name":"StarWarsLightsaberIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"character","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character"}}]},{"name":"StarWarsAskQuestionIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"AnswerSlot","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot"}}]},{"name":"StarWarsPlanetIntent","confirmationRequired":false,"prompts":{},"slots":[{"name":"character","type":"StarWarsCharacters","elicitationRequired":true,"confirmationRequired":false,"prompts":{"elicit":"Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character"}}]}]}}
+{
+  "intents": [
+    {
+      "name": "StarWarsQuotesIntent",
+      "samples": [
+        "Tell me a {character} quote",
+        "Tell me a quote by {character}",
+        "give me a quote from {character}",
+        "give me a {character} quote"
+      ],
+      "slots": [
+        {
+          "name": "character",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "StarWarsForceSensitiveIntent",
+      "samples": [
+        "Is {character} force-sensitive",
+        "Can {character} use the force"
+      ],
+      "slots": [
+        {
+          "name": "character",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "StarWarsForceSideIntent",
+      "samples": [
+        "What side of the force was {character} on",
+        "Was {character} on the Light or Dark side of the force",
+        "Was {character} affiliated with the Jedi or the Sith",
+        "was {character} a jedi",
+        "was {character} a sith"
+      ],
+      "slots": [
+        {
+          "name": "character",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "StarWarsLightsaberIntent",
+      "samples": [
+        "what is the color of {character} lightsaber",
+        "what color is {character} lightsaber",
+        "what\u0027s the color of {character} lightsaber"
+      ],
+      "slots": [
+        {
+          "name": "character",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "StarWarsAskQuestionIntent",
+      "samples": [
+        "Ask me a dialogue question",
+        "Ask me a line question",
+        "Ask me a quote",
+        "Ask me a movie quote",
+        "Ask me a quote someone said in the movie"
+      ],
+      "slots": [
+        {
+          "name": "AnswerSlot",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "StarWarsPlanetIntent",
+      "samples": [
+        "what planet is {character} from",
+        "where is {character} from",
+        "what planet was {character} born on",
+        "where was {character} born",
+        "what is {character} planet"
+      ],
+      "slots": [
+        {
+          "name": "character",
+          "type": "StarWarsCharacters",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "StarWarsCharacters",
+      "values": [
+        {
+          "name": {
+            "value": "Princess Leia",
+            "synonyms": [
+              "Leia"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Luke Skywalker",
+            "synonyms": [
+              "Luke"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Obi-wan Kenobi",
+            "synonyms": [
+              "Obi-wan"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Boba Fett",
+            "synonyms": []
+          }
+        },
+        {
+          "name": {
+            "value": "Yoda",
+            "synonyms": []
+          }
+        },
+        {
+          "name": {
+            "value": "Han Solo",
+            "synonyms": [
+              "Han"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Emperor Palpatine",
+            "synonyms": [
+              "Palpatine"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Kylo Ren",
+            "synonyms": [
+              "Ren"
+            ]
+          }
+        },
+        {
+          "name": {
+            "value": "Darth Vader",
+            "synonyms": [
+              "Vader"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which character"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "StarWarsQuotesIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "character",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsQuotesIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StarWarsForceSensitiveIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "character",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsForceSensitiveIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StarWarsForceSideIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "character",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsForceSideIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StarWarsLightsaberIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "character",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsLightsaberIntent.IntentSlot-character"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StarWarsAskQuestionIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "AnswerSlot",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsAskQuestionIntent.IntentSlot-AnswerSlot"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StarWarsPlanetIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "character",
+            "type": "StarWarsCharacters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-StarWarsPlanetIntent.IntentSlot-character"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
